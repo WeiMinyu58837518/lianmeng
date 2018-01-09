@@ -40,7 +40,7 @@
                         <div class="layui-btn-group">
 
                             <a href="{:url('edit?id='.$vo['id'])}" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon"></i></a>
-                            <a data-href="{:url('del?table=表名(无表前缀)&id='.$vo['id'])}" class="layui-btn layui-btn-primary layui-btn-small j-tr-del"><i class="layui-icon"></i></a>
+                            <a href="#" class="layui-btn layui-btn-primary layui-btn-small delete" idd="{$vo['id']}"><i class="layui-icon"></i></a>
                         </div>
                     </div>
                 </td>
@@ -52,15 +52,23 @@
 </form>
 
 {include file="admin@block/layui" /}
-    <script>
-        function change(id,sta){
-            var data={
-                id:id,
-                status:sta
-            };
-            $.get('admin/type/change',data,function(a){
-                console.log(a);
+<script>
+    $(".delete").click(function(){
+        if(confirm('确定删除？')){
+            var id=$(this).attr('idd');
+            $.get('delete/id/'+id,function(a){
+                if(a.info==10000){
+                    alert('删除成功');
+                    location.href='index'
+                }
+                if(a.info==20000){
+                    alert('删除失败');
+                }
+                if(a.info==30000){
+                    alert(a.error);
+                }
             })
         }
-    </script>
+    })
+</script>
 

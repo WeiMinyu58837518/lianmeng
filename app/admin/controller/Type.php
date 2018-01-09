@@ -91,6 +91,15 @@ class Type extends Admin
     //删除分类
     public function delete(){
         $id=Request::instance()->param('id');
-
+        $res=Db::name('type')->where('pid',$id)->select();
+        if(!empty($res)){
+            return ['info'=>30000,'error'=>'此分类有子分类，请勿删除'];
+        }
+        $ress=Db::name('type')->delete($id);
+        if($ress){
+            return ['info'=>10000];
+        }else{
+            return ['info'=>20000];
+        }
     }
 }
