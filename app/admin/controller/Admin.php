@@ -50,7 +50,7 @@ class Admin extends Common
                 $url = ROOT_DIR.config('sys.admin_path');
                 model('AdminUser')->logout();
             }
-            return $this->error('['.$c_menu['title'].'] 访问权限不足', $url);
+            return $this->error('['.$c_menu['title'].'] 访问权限不足', 'admin/index/index');
         }
 
         // 系统日志记录
