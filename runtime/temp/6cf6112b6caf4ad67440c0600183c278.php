@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:51:"D:\Aliases\lianmeng/app/admin\view\doghouse\add.php";i:1515550000;s:45:"D:\Aliases\lianmeng\app\admin\view\layout.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\header.php";i:1515477828;s:50:"D:\Aliases\lianmeng\app\admin\view\block\layui.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\footer.php";i:1515477847;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:51:"D:\Aliases\lianmeng/app/admin\view\doghouse\add.php";i:1515552622;s:45:"D:\Aliases\lianmeng\app\admin\view\layout.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\header.php";i:1515477828;s:50:"D:\Aliases\lianmeng\app\admin\view\block\layui.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\footer.php";i:1515477847;}*/ ?>
 <?php if(input('param.hisi_iframe') || cookie('hisi_iframe')): ?>
 <!DOCTYPE html>
 <html>
@@ -124,129 +124,39 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             </ul>
             <div class="layui-tab-content page-tab-content">
                 <div class="layui-tab-item layui-show">
-                    <form class="layui-form layui-form-pane" action="<?php echo url(''); ?>" id="editForm" method="post">
+                    <form class="layui-form layui-form-pane" action="<?php echo url('add'); ?>" id="editForm" method="post">
     <fieldset class="layui-elem-field layui-field-title">
-        <legend>表单集合</legend>
+        <legend>犬舍专访</legend>
     </fieldset>
     <div class="layui-form-item">
-        <label class="layui-form-label">角色分组</label>
+        <label class="layui-form-label">标题</label>
         <div class="layui-input-inline">
-            <select name="role_id" class="field-role_id" type="select">
-                <option value="0">超级管理员</option>
-                <option value="1" selected="">普通管理员</option>
-            </select>
+            <input type="text" class="layui-input field-username" name="title" lay-verify="title" autocomplete="off" placeholder="请输入文章标题">
         </div>
+        <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">用户名</label>
+        <label class="layui-form-label">作者</label>
         <div class="layui-input-inline">
-            <input type="text" class="layui-input field-username" name="username" lay-verify="title" autocomplete="off" placeholder="请输入用户名">
+            <input type="text" class="layui-input field-username" name="author" lay-verify="title" autocomplete="off" placeholder="请输入文章作者">
         </div>
-        <div class="layui-form-mid layui-word-aux">表单操作提示</div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">会员</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input" name="member" lay-verify="" autocomplete="off" placeholder="会员选择">
-        </div>
-        <a href="<?php echo url('admin/member/pop?callback=func'); ?>" class="layui-btn layui-btn-primary j-iframe-pop fl">选择会员</a>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">系统图标</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input" id="input-icon" name="icon" lay-verify="" autocomplete="off" placeholder="可自定义或使用系统图标">
-        </div>
-        <i class="" id="form-icon-preview"></i>
-        <a href="<?php echo url('admin/publics/icon?input=input-icon&show=form-icon-preview'); ?>" class="layui-btn layui-btn-primary j-iframe-pop fl">选择图标</a>
+        <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <!--图片-->
     <div class="layui-form-item">
-        <label class="layui-form-label">图片上传</label>
+        <label class="layui-form-label">封面图上传</label>
         <div class="layui-input-inline upload">
             <button type="button" name="upload" class="layui-btn layui-btn-primary layui-upload" lay-type="image" lay-data="{accept:'image'}">请上传图片</button>
-            <input type="hidden" class="upload-input" name="image" value="">
+            <input type="hidden" class="upload-input" name="img" value="">
             <img src="" style="display:none;border-radius:5px;border:1px solid #ccc" width="36" height="36">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">昵    称</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input field-nick" name="nick" lay-verify="title" autocomplete="off" placeholder="请输入用户名">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">登陆密码</label>
-        <div class="layui-input-inline">
-            <input type="password" class="layui-input" name="password" lay-verify="password" autocomplete="off" placeholder="******">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">联系邮箱</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input field-email" name="email" lay-verify="title" autocomplete="off" placeholder="请输入邮箱地址">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">联系手机</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input field-mobile" name="mobile" lay-verify="title" autocomplete="off" placeholder="请输入手机号码">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">CKEditor</label>
+        <label class="layui-form-label">正文</label>
         <div class="layui-input-block">
-            <[删除我]textarea id="ckeditor" name="content">CKEditor 1</[删除我]textarea>
+            <textarea id="UEditor2" name="content"></textarea>
     </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">CKEditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea id="ckeditor2" name="content">CKEditor 2</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">kindEditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea name="content1">kindEditor 1</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">kindEditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea name="content2">kindEditor 2</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">UEditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea id="UEditor1" name="content3">kindEditor 2</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">UEditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea id="UEditor2" name="content3">kindEditor 2</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">UMditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea id="UMeditor1" name="UMditor1">UMditor 1</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">UMditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea id="UMeditor2" name="UMditor2">UMditor 2</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">状    态</label>
-        <div class="layui-input-inline">
-            <input type="radio" class="field-status" name="status" value="1" title="启用">
-            <input type="radio" class="field-status" name="status" value="0" title="禁用">
-        </div>
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
@@ -286,7 +196,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
          */
         upload.render({
             elem: '.layui-upload'
-            ,url: '<?php echo url("admin/annex/upload?water=&thumb=&from=&group="); ?>'
+            ,url: '<?php echo url("admin/annex/upload?water=no&thumb=no&from=input&group=sys"); ?>'
             ,method: 'post'
             ,before: function(input) {
                 layer.msg('文件上传中...', {time:3000000});
@@ -320,6 +230,8 @@ $ca = strtolower(request()->controller().'/'.request()->action());
 <?php echo editor(['UEditor1', 'UEditor2'], 'ueditor'); ?>
 <?php echo editor(['ckeditor', 'ckeditor2'], 'ckeditor'); ?>
 <script src="/static/admin/js/footer.js"></script>
+
+
                 </div>
             </div>
         </div>
@@ -341,129 +253,39 @@ $ca = strtolower(request()->controller().'/'.request()->action());
                 </div>
             </ul>
             <div class="layui-tab-content page-tab-content">
-                <form class="layui-form layui-form-pane" action="<?php echo url(''); ?>" id="editForm" method="post">
+                <form class="layui-form layui-form-pane" action="<?php echo url('add'); ?>" id="editForm" method="post">
     <fieldset class="layui-elem-field layui-field-title">
-        <legend>表单集合</legend>
+        <legend>犬舍专访</legend>
     </fieldset>
     <div class="layui-form-item">
-        <label class="layui-form-label">角色分组</label>
+        <label class="layui-form-label">标题</label>
         <div class="layui-input-inline">
-            <select name="role_id" class="field-role_id" type="select">
-                <option value="0">超级管理员</option>
-                <option value="1" selected="">普通管理员</option>
-            </select>
+            <input type="text" class="layui-input field-username" name="title" lay-verify="title" autocomplete="off" placeholder="请输入文章标题">
         </div>
+        <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">用户名</label>
+        <label class="layui-form-label">作者</label>
         <div class="layui-input-inline">
-            <input type="text" class="layui-input field-username" name="username" lay-verify="title" autocomplete="off" placeholder="请输入用户名">
+            <input type="text" class="layui-input field-username" name="author" lay-verify="title" autocomplete="off" placeholder="请输入文章作者">
         </div>
-        <div class="layui-form-mid layui-word-aux">表单操作提示</div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">会员</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input" name="member" lay-verify="" autocomplete="off" placeholder="会员选择">
-        </div>
-        <a href="<?php echo url('admin/member/pop?callback=func'); ?>" class="layui-btn layui-btn-primary j-iframe-pop fl">选择会员</a>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">系统图标</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input" id="input-icon" name="icon" lay-verify="" autocomplete="off" placeholder="可自定义或使用系统图标">
-        </div>
-        <i class="" id="form-icon-preview"></i>
-        <a href="<?php echo url('admin/publics/icon?input=input-icon&show=form-icon-preview'); ?>" class="layui-btn layui-btn-primary j-iframe-pop fl">选择图标</a>
+        <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <!--图片-->
     <div class="layui-form-item">
-        <label class="layui-form-label">图片上传</label>
+        <label class="layui-form-label">封面图上传</label>
         <div class="layui-input-inline upload">
             <button type="button" name="upload" class="layui-btn layui-btn-primary layui-upload" lay-type="image" lay-data="{accept:'image'}">请上传图片</button>
-            <input type="hidden" class="upload-input" name="image" value="">
+            <input type="hidden" class="upload-input" name="img" value="">
             <img src="" style="display:none;border-radius:5px;border:1px solid #ccc" width="36" height="36">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">昵    称</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input field-nick" name="nick" lay-verify="title" autocomplete="off" placeholder="请输入用户名">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">登陆密码</label>
-        <div class="layui-input-inline">
-            <input type="password" class="layui-input" name="password" lay-verify="password" autocomplete="off" placeholder="******">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">联系邮箱</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input field-email" name="email" lay-verify="title" autocomplete="off" placeholder="请输入邮箱地址">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">联系手机</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input field-mobile" name="mobile" lay-verify="title" autocomplete="off" placeholder="请输入手机号码">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">CKEditor</label>
+        <label class="layui-form-label">正文</label>
         <div class="layui-input-block">
-            <[删除我]textarea id="ckeditor" name="content">CKEditor 1</[删除我]textarea>
+            <textarea id="UEditor2" name="content"></textarea>
     </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">CKEditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea id="ckeditor2" name="content">CKEditor 2</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">kindEditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea name="content1">kindEditor 1</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">kindEditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea name="content2">kindEditor 2</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">UEditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea id="UEditor1" name="content3">kindEditor 2</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">UEditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea id="UEditor2" name="content3">kindEditor 2</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">UMditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea id="UMeditor1" name="UMditor1">UMditor 1</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">UMditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea id="UMeditor2" name="UMditor2">UMditor 2</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">状    态</label>
-        <div class="layui-input-inline">
-            <input type="radio" class="field-status" name="status" value="1" title="启用">
-            <input type="radio" class="field-status" name="status" value="0" title="禁用">
-        </div>
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
@@ -503,7 +325,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
          */
         upload.render({
             elem: '.layui-upload'
-            ,url: '<?php echo url("admin/annex/upload?water=&thumb=&from=&group="); ?>'
+            ,url: '<?php echo url("admin/annex/upload?water=no&thumb=no&from=input&group=sys"); ?>'
             ,method: 'post'
             ,before: function(input) {
                 layer.msg('文件上传中...', {time:3000000});
@@ -537,133 +359,45 @@ $ca = strtolower(request()->controller().'/'.request()->action());
 <?php echo editor(['UEditor1', 'UEditor2'], 'ueditor'); ?>
 <?php echo editor(['ckeditor', 'ckeditor2'], 'ckeditor'); ?>
 <script src="/static/admin/js/footer.js"></script>
+
+
             </div>
         </div>
     <?php break; case "3": ?>
     
-        <form class="layui-form layui-form-pane" action="<?php echo url(''); ?>" id="editForm" method="post">
+        <form class="layui-form layui-form-pane" action="<?php echo url('add'); ?>" id="editForm" method="post">
     <fieldset class="layui-elem-field layui-field-title">
-        <legend>表单集合</legend>
+        <legend>犬舍专访</legend>
     </fieldset>
     <div class="layui-form-item">
-        <label class="layui-form-label">角色分组</label>
+        <label class="layui-form-label">标题</label>
         <div class="layui-input-inline">
-            <select name="role_id" class="field-role_id" type="select">
-                <option value="0">超级管理员</option>
-                <option value="1" selected="">普通管理员</option>
-            </select>
+            <input type="text" class="layui-input field-username" name="title" lay-verify="title" autocomplete="off" placeholder="请输入文章标题">
         </div>
+        <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">用户名</label>
+        <label class="layui-form-label">作者</label>
         <div class="layui-input-inline">
-            <input type="text" class="layui-input field-username" name="username" lay-verify="title" autocomplete="off" placeholder="请输入用户名">
+            <input type="text" class="layui-input field-username" name="author" lay-verify="title" autocomplete="off" placeholder="请输入文章作者">
         </div>
-        <div class="layui-form-mid layui-word-aux">表单操作提示</div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">会员</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input" name="member" lay-verify="" autocomplete="off" placeholder="会员选择">
-        </div>
-        <a href="<?php echo url('admin/member/pop?callback=func'); ?>" class="layui-btn layui-btn-primary j-iframe-pop fl">选择会员</a>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">系统图标</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input" id="input-icon" name="icon" lay-verify="" autocomplete="off" placeholder="可自定义或使用系统图标">
-        </div>
-        <i class="" id="form-icon-preview"></i>
-        <a href="<?php echo url('admin/publics/icon?input=input-icon&show=form-icon-preview'); ?>" class="layui-btn layui-btn-primary j-iframe-pop fl">选择图标</a>
+        <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <!--图片-->
     <div class="layui-form-item">
-        <label class="layui-form-label">图片上传</label>
+        <label class="layui-form-label">封面图上传</label>
         <div class="layui-input-inline upload">
             <button type="button" name="upload" class="layui-btn layui-btn-primary layui-upload" lay-type="image" lay-data="{accept:'image'}">请上传图片</button>
-            <input type="hidden" class="upload-input" name="image" value="">
+            <input type="hidden" class="upload-input" name="img" value="">
             <img src="" style="display:none;border-radius:5px;border:1px solid #ccc" width="36" height="36">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">昵    称</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input field-nick" name="nick" lay-verify="title" autocomplete="off" placeholder="请输入用户名">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">登陆密码</label>
-        <div class="layui-input-inline">
-            <input type="password" class="layui-input" name="password" lay-verify="password" autocomplete="off" placeholder="******">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">联系邮箱</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input field-email" name="email" lay-verify="title" autocomplete="off" placeholder="请输入邮箱地址">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">联系手机</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input field-mobile" name="mobile" lay-verify="title" autocomplete="off" placeholder="请输入手机号码">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">CKEditor</label>
+        <label class="layui-form-label">正文</label>
         <div class="layui-input-block">
-            <[删除我]textarea id="ckeditor" name="content">CKEditor 1</[删除我]textarea>
+            <textarea id="UEditor2" name="content"></textarea>
     </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">CKEditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea id="ckeditor2" name="content">CKEditor 2</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">kindEditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea name="content1">kindEditor 1</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">kindEditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea name="content2">kindEditor 2</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">UEditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea id="UEditor1" name="content3">kindEditor 2</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">UEditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea id="UEditor2" name="content3">kindEditor 2</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">UMditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea id="UMeditor1" name="UMditor1">UMditor 1</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">UMditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea id="UMeditor2" name="UMditor2">UMditor 2</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">状    态</label>
-        <div class="layui-input-inline">
-            <input type="radio" class="field-status" name="status" value="1" title="启用">
-            <input type="radio" class="field-status" name="status" value="0" title="禁用">
-        </div>
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
@@ -703,7 +437,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
          */
         upload.render({
             elem: '.layui-upload'
-            ,url: '<?php echo url("admin/annex/upload?water=&thumb=&from=&group="); ?>'
+            ,url: '<?php echo url("admin/annex/upload?water=no&thumb=no&from=input&group=sys"); ?>'
             ,method: 'post'
             ,before: function(input) {
                 layer.msg('文件上传中...', {time:3000000});
@@ -737,6 +471,8 @@ $ca = strtolower(request()->controller().'/'.request()->action());
 <?php echo editor(['UEditor1', 'UEditor2'], 'ueditor'); ?>
 <?php echo editor(['ckeditor', 'ckeditor2'], 'ckeditor'); ?>
 <script src="/static/admin/js/footer.js"></script>
+
+
     <?php break; default: ?>
     
         <div class="layui-tab layui-tab-card">
@@ -751,129 +487,39 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             </ul>
             <div class="layui-tab-content page-tab-content">
                 <div class="layui-tab-item layui-show">
-                    <form class="layui-form layui-form-pane" action="<?php echo url(''); ?>" id="editForm" method="post">
+                    <form class="layui-form layui-form-pane" action="<?php echo url('add'); ?>" id="editForm" method="post">
     <fieldset class="layui-elem-field layui-field-title">
-        <legend>表单集合</legend>
+        <legend>犬舍专访</legend>
     </fieldset>
     <div class="layui-form-item">
-        <label class="layui-form-label">角色分组</label>
+        <label class="layui-form-label">标题</label>
         <div class="layui-input-inline">
-            <select name="role_id" class="field-role_id" type="select">
-                <option value="0">超级管理员</option>
-                <option value="1" selected="">普通管理员</option>
-            </select>
+            <input type="text" class="layui-input field-username" name="title" lay-verify="title" autocomplete="off" placeholder="请输入文章标题">
         </div>
+        <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">用户名</label>
+        <label class="layui-form-label">作者</label>
         <div class="layui-input-inline">
-            <input type="text" class="layui-input field-username" name="username" lay-verify="title" autocomplete="off" placeholder="请输入用户名">
+            <input type="text" class="layui-input field-username" name="author" lay-verify="title" autocomplete="off" placeholder="请输入文章作者">
         </div>
-        <div class="layui-form-mid layui-word-aux">表单操作提示</div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">会员</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input" name="member" lay-verify="" autocomplete="off" placeholder="会员选择">
-        </div>
-        <a href="<?php echo url('admin/member/pop?callback=func'); ?>" class="layui-btn layui-btn-primary j-iframe-pop fl">选择会员</a>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">系统图标</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input" id="input-icon" name="icon" lay-verify="" autocomplete="off" placeholder="可自定义或使用系统图标">
-        </div>
-        <i class="" id="form-icon-preview"></i>
-        <a href="<?php echo url('admin/publics/icon?input=input-icon&show=form-icon-preview'); ?>" class="layui-btn layui-btn-primary j-iframe-pop fl">选择图标</a>
+        <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <!--图片-->
     <div class="layui-form-item">
-        <label class="layui-form-label">图片上传</label>
+        <label class="layui-form-label">封面图上传</label>
         <div class="layui-input-inline upload">
             <button type="button" name="upload" class="layui-btn layui-btn-primary layui-upload" lay-type="image" lay-data="{accept:'image'}">请上传图片</button>
-            <input type="hidden" class="upload-input" name="image" value="">
+            <input type="hidden" class="upload-input" name="img" value="">
             <img src="" style="display:none;border-radius:5px;border:1px solid #ccc" width="36" height="36">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">昵    称</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input field-nick" name="nick" lay-verify="title" autocomplete="off" placeholder="请输入用户名">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">登陆密码</label>
-        <div class="layui-input-inline">
-            <input type="password" class="layui-input" name="password" lay-verify="password" autocomplete="off" placeholder="******">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">联系邮箱</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input field-email" name="email" lay-verify="title" autocomplete="off" placeholder="请输入邮箱地址">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">联系手机</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input field-mobile" name="mobile" lay-verify="title" autocomplete="off" placeholder="请输入手机号码">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">CKEditor</label>
+        <label class="layui-form-label">正文</label>
         <div class="layui-input-block">
-            <[删除我]textarea id="ckeditor" name="content">CKEditor 1</[删除我]textarea>
+            <textarea id="UEditor2" name="content"></textarea>
     </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">CKEditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea id="ckeditor2" name="content">CKEditor 2</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">kindEditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea name="content1">kindEditor 1</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">kindEditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea name="content2">kindEditor 2</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">UEditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea id="UEditor1" name="content3">kindEditor 2</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">UEditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea id="UEditor2" name="content3">kindEditor 2</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">UMditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea id="UMeditor1" name="UMditor1">UMditor 1</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">UMditor</label>
-        <div class="layui-input-block">
-            <[删除我]textarea id="UMeditor2" name="UMditor2">UMditor 2</[删除我]textarea>
-    </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">状    态</label>
-        <div class="layui-input-inline">
-            <input type="radio" class="field-status" name="status" value="1" title="启用">
-            <input type="radio" class="field-status" name="status" value="0" title="禁用">
-        </div>
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
@@ -913,7 +559,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
          */
         upload.render({
             elem: '.layui-upload'
-            ,url: '<?php echo url("admin/annex/upload?water=&thumb=&from=&group="); ?>'
+            ,url: '<?php echo url("admin/annex/upload?water=no&thumb=no&from=input&group=sys"); ?>'
             ,method: 'post'
             ,before: function(input) {
                 layer.msg('文件上传中...', {time:3000000});
@@ -947,6 +593,8 @@ $ca = strtolower(request()->controller().'/'.request()->action());
 <?php echo editor(['UEditor1', 'UEditor2'], 'ueditor'); ?>
 <?php echo editor(['ckeditor', 'ckeditor2'], 'ckeditor'); ?>
 <script src="/static/admin/js/footer.js"></script>
+
+
                 </div>
             </div>
         </div>
