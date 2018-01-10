@@ -1,36 +1,37 @@
-<form class="layui-form layui-form-pane" action="{:url('add')}" id="editForm" method="post">
+<form class="layui-form layui-form-pane" action="{:url('edit')}" id="editForm" method="post">
     <fieldset class="layui-elem-field layui-field-title">
         <legend>犬舍专访</legend>
     </fieldset>
     <div class="layui-form-item">
         <label class="layui-form-label">标题</label>
         <div class="layui-input-inline">
-            <input type="text" class="layui-input field-username" name="title" lay-verify="title" autocomplete="off" placeholder="请输入文章标题">
+            <input type="text" class="layui-input field-username" value="{$data['title']}" name="title" lay-verify="title" autocomplete="off" placeholder="请输入文章标题">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">作者</label>
         <div class="layui-input-inline">
-            <input type="text" class="layui-input field-username" name="author" lay-verify="title" autocomplete="off" placeholder="请输入文章作者">
+            <input type="text" class="layui-input field-username" value="{$data['author']}" name="author" lay-verify="title" autocomplete="off" placeholder="请输入文章作者">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
+    <input type="hidden" name="idd" class="" value="{$data['id']}">
     <!--图片-->
     <div class="layui-form-item">
         <label class="layui-form-label">封面图上传</label>
         <div class="layui-input-inline upload">
             <button type="button" name="upload" class="layui-btn layui-btn-primary layui-upload" lay-type="image" lay-data="{accept:'image'}">请上传图片</button>
-            <input type="hidden" class="upload-input" name="img" value="">
-            <img src="" style="display:none;border-radius:5px;border:1px solid #ccc" width="36" height="36">
+            <input type="hidden" class="upload-input" name="img" value="{$data['img']}">
+            <img src="{$data['img']}" style="border-radius:5px;border:1px solid #ccc" width="36" height="36">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">正文</label>
         <div class="layui-input-block">
-            <textarea id="UEditor2" name="content"></textarea>
-    </div>
+            <textarea id="UEditor2" name="content">{$data['content']}</textarea>
+        </div>
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:53:"D:\Aliases\lianmeng/app/admin\view\doghouse\index.php";i:1515555219;s:45:"D:\Aliases\lianmeng\app\admin\view\layout.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\header.php";i:1515477828;s:50:"D:\Aliases\lianmeng\app\admin\view\block\layui.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\footer.php";i:1515477847;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:54:"D:\Aliases\lianmeng/app/admin\view\database\import.php";i:1515225914;s:45:"D:\Aliases\lianmeng\app\admin\view\layout.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\header.php";i:1515477828;s:50:"D:\Aliases\lianmeng\app\admin\view\block\layui.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\footer.php";i:1515477847;}*/ ?>
 <?php if(input('param.hisi_iframe') || cookie('hisi_iframe')): ?>
 <!DOCTYPE html>
 <html>
@@ -124,71 +124,37 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             </ul>
             <div class="layui-tab-content page-tab-content">
                 <div class="layui-tab-item layui-show">
-                    <form class="page-list-form">
-    <div class="page-toolbar">
-        <div class="layui-btn-group fl">
-
-            <a href="<?php echo url('add'); ?>" class="layui-btn layui-btn-primary"><i class="aicon ai-tianjia"></i>添加</a>
-            <a href="<?php echo url('del?table=表名(无表前缀)'); ?>" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="aicon ai-jinyong"></i>删除</a>
-
-        </div>
-        <div class="page-filter fr">
-            <form class="layui-form layui-form-pane" action="<?php echo url(); ?>" method="get">
-                <div class="layui-form-item">
-                    <label class="layui-form-label">搜索</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="q" lay-verify="required" placeholder="请输入关键词搜索" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class="layui-form">
-        <table class="layui-table mt10" lay-even="" lay-skin="row">
-            <colgroup>
-                <col width="50">
-                <col width="200">
-                <col width="100">
-                <col width="100">
-                <col width="100">
-                <col width="80">
-            </colgroup>
-            <thead>
+                    <form id="pageListForm" class="layui-form">
+    <table class="layui-table mt10" lay-even="" lay-skin="row">
+        <thead>
             <tr>
-                <th><input type="checkbox" lay-skin="primary" lay-filter="allChoose"></th>
-                <th>标题</th>
-                <th>作者</th>
-                <th>创建时间</th>
-                <th>修改时间</th>
+                <th>备份名称</th>
+                <th>备份卷数</th>
+                <th>备份压缩</th>
+                <th>备份大小</th>
+                <th>备份时间</th>
                 <th>操作</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            <?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+            </tr> 
+        </thead>
+        <tbody>
+            <?php if(is_array($data_list) || $data_list instanceof \think\Collection || $data_list instanceof \think\Paginator): $i = 0; $__LIST__ = $data_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
             <tr>
-                <td><input type="checkbox" class="layui-checkbox checkbox-ids" name="ids[]" value="<?php echo $vo['id']; ?>" lay-skin="primary"></td>
-                <td><?php echo $vo['title']; ?></td>
-                <td><?php echo $vo['author']; ?></td>
-                <td><?php echo $vo['ctime']; ?></td>
-                <td><?php echo $vo['ptime']; ?></td>
-                <td>
+                <td><?php echo date('Ymd-His', $vo['time']); ?></td>
+                <td><?php echo $vo['part']; ?></td>
+                <td><?php echo $vo['compress']; ?></td>
+                <td><?php echo round($vo['size']/1024, 2); ?> K</td>
+                <td><?php echo date('Y-m-d H:i:s', $vo['time']); ?></td>
+                <td> 
                     <div class="layui-btn-group">
-                        <div class="layui-btn-group">
-                            <a href="<?php echo url('edit?id='.$vo['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon"></i></a>
-                            <a data-href="<?php echo url('del?table=表名(无表前缀)&id='.$vo['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small j-tr-del"><i class="layui-icon"></i></a>
-                        </div>
+                        <a data-href="<?php echo url('import?id='.strtotime($key)); ?>" class="layui-btn layui-btn-primary layui-btn-small j-ajax">恢复</a>
+                        <a data-href="<?php echo url('del?id='.strtotime($key)); ?>" class="layui-btn layui-btn-primary layui-btn-small j-tr-del">删除</a>
                     </div>
                 </td>
             </tr>
             <?php endforeach; endif; else: echo "" ;endif; ?>
-
-            </tbody>
-        </table>
-    </div>
+        </tbody>
+    </table>
 </form>
-<?php echo $data->render(); ?>
-
 <script src="/static/admin/js/layui/layui.js?v=<?php echo config('hisiphp.version'); ?>"></script>
 <script>
     var ADMIN_PATH = "<?php echo $_SERVER['SCRIPT_NAME']; ?>", LAYUI_OFFSET = 0;
@@ -218,71 +184,37 @@ $ca = strtolower(request()->controller().'/'.request()->action());
                 </div>
             </ul>
             <div class="layui-tab-content page-tab-content">
-                <form class="page-list-form">
-    <div class="page-toolbar">
-        <div class="layui-btn-group fl">
-
-            <a href="<?php echo url('add'); ?>" class="layui-btn layui-btn-primary"><i class="aicon ai-tianjia"></i>添加</a>
-            <a href="<?php echo url('del?table=表名(无表前缀)'); ?>" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="aicon ai-jinyong"></i>删除</a>
-
-        </div>
-        <div class="page-filter fr">
-            <form class="layui-form layui-form-pane" action="<?php echo url(); ?>" method="get">
-                <div class="layui-form-item">
-                    <label class="layui-form-label">搜索</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="q" lay-verify="required" placeholder="请输入关键词搜索" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class="layui-form">
-        <table class="layui-table mt10" lay-even="" lay-skin="row">
-            <colgroup>
-                <col width="50">
-                <col width="200">
-                <col width="100">
-                <col width="100">
-                <col width="100">
-                <col width="80">
-            </colgroup>
-            <thead>
+                <form id="pageListForm" class="layui-form">
+    <table class="layui-table mt10" lay-even="" lay-skin="row">
+        <thead>
             <tr>
-                <th><input type="checkbox" lay-skin="primary" lay-filter="allChoose"></th>
-                <th>标题</th>
-                <th>作者</th>
-                <th>创建时间</th>
-                <th>修改时间</th>
+                <th>备份名称</th>
+                <th>备份卷数</th>
+                <th>备份压缩</th>
+                <th>备份大小</th>
+                <th>备份时间</th>
                 <th>操作</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            <?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+            </tr> 
+        </thead>
+        <tbody>
+            <?php if(is_array($data_list) || $data_list instanceof \think\Collection || $data_list instanceof \think\Paginator): $i = 0; $__LIST__ = $data_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
             <tr>
-                <td><input type="checkbox" class="layui-checkbox checkbox-ids" name="ids[]" value="<?php echo $vo['id']; ?>" lay-skin="primary"></td>
-                <td><?php echo $vo['title']; ?></td>
-                <td><?php echo $vo['author']; ?></td>
-                <td><?php echo $vo['ctime']; ?></td>
-                <td><?php echo $vo['ptime']; ?></td>
-                <td>
+                <td><?php echo date('Ymd-His', $vo['time']); ?></td>
+                <td><?php echo $vo['part']; ?></td>
+                <td><?php echo $vo['compress']; ?></td>
+                <td><?php echo round($vo['size']/1024, 2); ?> K</td>
+                <td><?php echo date('Y-m-d H:i:s', $vo['time']); ?></td>
+                <td> 
                     <div class="layui-btn-group">
-                        <div class="layui-btn-group">
-                            <a href="<?php echo url('edit?id='.$vo['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon"></i></a>
-                            <a data-href="<?php echo url('del?table=表名(无表前缀)&id='.$vo['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small j-tr-del"><i class="layui-icon"></i></a>
-                        </div>
+                        <a data-href="<?php echo url('import?id='.strtotime($key)); ?>" class="layui-btn layui-btn-primary layui-btn-small j-ajax">恢复</a>
+                        <a data-href="<?php echo url('del?id='.strtotime($key)); ?>" class="layui-btn layui-btn-primary layui-btn-small j-tr-del">删除</a>
                     </div>
                 </td>
             </tr>
             <?php endforeach; endif; else: echo "" ;endif; ?>
-
-            </tbody>
-        </table>
-    </div>
+        </tbody>
+    </table>
 </form>
-<?php echo $data->render(); ?>
-
 <script src="/static/admin/js/layui/layui.js?v=<?php echo config('hisiphp.version'); ?>"></script>
 <script>
     var ADMIN_PATH = "<?php echo $_SERVER['SCRIPT_NAME']; ?>", LAYUI_OFFSET = 0;
@@ -295,71 +227,37 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         </div>
     <?php break; case "3": ?>
     
-        <form class="page-list-form">
-    <div class="page-toolbar">
-        <div class="layui-btn-group fl">
-
-            <a href="<?php echo url('add'); ?>" class="layui-btn layui-btn-primary"><i class="aicon ai-tianjia"></i>添加</a>
-            <a href="<?php echo url('del?table=表名(无表前缀)'); ?>" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="aicon ai-jinyong"></i>删除</a>
-
-        </div>
-        <div class="page-filter fr">
-            <form class="layui-form layui-form-pane" action="<?php echo url(); ?>" method="get">
-                <div class="layui-form-item">
-                    <label class="layui-form-label">搜索</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="q" lay-verify="required" placeholder="请输入关键词搜索" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class="layui-form">
-        <table class="layui-table mt10" lay-even="" lay-skin="row">
-            <colgroup>
-                <col width="50">
-                <col width="200">
-                <col width="100">
-                <col width="100">
-                <col width="100">
-                <col width="80">
-            </colgroup>
-            <thead>
+        <form id="pageListForm" class="layui-form">
+    <table class="layui-table mt10" lay-even="" lay-skin="row">
+        <thead>
             <tr>
-                <th><input type="checkbox" lay-skin="primary" lay-filter="allChoose"></th>
-                <th>标题</th>
-                <th>作者</th>
-                <th>创建时间</th>
-                <th>修改时间</th>
+                <th>备份名称</th>
+                <th>备份卷数</th>
+                <th>备份压缩</th>
+                <th>备份大小</th>
+                <th>备份时间</th>
                 <th>操作</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            <?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+            </tr> 
+        </thead>
+        <tbody>
+            <?php if(is_array($data_list) || $data_list instanceof \think\Collection || $data_list instanceof \think\Paginator): $i = 0; $__LIST__ = $data_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
             <tr>
-                <td><input type="checkbox" class="layui-checkbox checkbox-ids" name="ids[]" value="<?php echo $vo['id']; ?>" lay-skin="primary"></td>
-                <td><?php echo $vo['title']; ?></td>
-                <td><?php echo $vo['author']; ?></td>
-                <td><?php echo $vo['ctime']; ?></td>
-                <td><?php echo $vo['ptime']; ?></td>
-                <td>
+                <td><?php echo date('Ymd-His', $vo['time']); ?></td>
+                <td><?php echo $vo['part']; ?></td>
+                <td><?php echo $vo['compress']; ?></td>
+                <td><?php echo round($vo['size']/1024, 2); ?> K</td>
+                <td><?php echo date('Y-m-d H:i:s', $vo['time']); ?></td>
+                <td> 
                     <div class="layui-btn-group">
-                        <div class="layui-btn-group">
-                            <a href="<?php echo url('edit?id='.$vo['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon"></i></a>
-                            <a data-href="<?php echo url('del?table=表名(无表前缀)&id='.$vo['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small j-tr-del"><i class="layui-icon"></i></a>
-                        </div>
+                        <a data-href="<?php echo url('import?id='.strtotime($key)); ?>" class="layui-btn layui-btn-primary layui-btn-small j-ajax">恢复</a>
+                        <a data-href="<?php echo url('del?id='.strtotime($key)); ?>" class="layui-btn layui-btn-primary layui-btn-small j-tr-del">删除</a>
                     </div>
                 </td>
             </tr>
             <?php endforeach; endif; else: echo "" ;endif; ?>
-
-            </tbody>
-        </table>
-    </div>
+        </tbody>
+    </table>
 </form>
-<?php echo $data->render(); ?>
-
 <script src="/static/admin/js/layui/layui.js?v=<?php echo config('hisiphp.version'); ?>"></script>
 <script>
     var ADMIN_PATH = "<?php echo $_SERVER['SCRIPT_NAME']; ?>", LAYUI_OFFSET = 0;
@@ -382,71 +280,37 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             </ul>
             <div class="layui-tab-content page-tab-content">
                 <div class="layui-tab-item layui-show">
-                    <form class="page-list-form">
-    <div class="page-toolbar">
-        <div class="layui-btn-group fl">
-
-            <a href="<?php echo url('add'); ?>" class="layui-btn layui-btn-primary"><i class="aicon ai-tianjia"></i>添加</a>
-            <a href="<?php echo url('del?table=表名(无表前缀)'); ?>" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="aicon ai-jinyong"></i>删除</a>
-
-        </div>
-        <div class="page-filter fr">
-            <form class="layui-form layui-form-pane" action="<?php echo url(); ?>" method="get">
-                <div class="layui-form-item">
-                    <label class="layui-form-label">搜索</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="q" lay-verify="required" placeholder="请输入关键词搜索" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class="layui-form">
-        <table class="layui-table mt10" lay-even="" lay-skin="row">
-            <colgroup>
-                <col width="50">
-                <col width="200">
-                <col width="100">
-                <col width="100">
-                <col width="100">
-                <col width="80">
-            </colgroup>
-            <thead>
+                    <form id="pageListForm" class="layui-form">
+    <table class="layui-table mt10" lay-even="" lay-skin="row">
+        <thead>
             <tr>
-                <th><input type="checkbox" lay-skin="primary" lay-filter="allChoose"></th>
-                <th>标题</th>
-                <th>作者</th>
-                <th>创建时间</th>
-                <th>修改时间</th>
+                <th>备份名称</th>
+                <th>备份卷数</th>
+                <th>备份压缩</th>
+                <th>备份大小</th>
+                <th>备份时间</th>
                 <th>操作</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            <?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+            </tr> 
+        </thead>
+        <tbody>
+            <?php if(is_array($data_list) || $data_list instanceof \think\Collection || $data_list instanceof \think\Paginator): $i = 0; $__LIST__ = $data_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
             <tr>
-                <td><input type="checkbox" class="layui-checkbox checkbox-ids" name="ids[]" value="<?php echo $vo['id']; ?>" lay-skin="primary"></td>
-                <td><?php echo $vo['title']; ?></td>
-                <td><?php echo $vo['author']; ?></td>
-                <td><?php echo $vo['ctime']; ?></td>
-                <td><?php echo $vo['ptime']; ?></td>
-                <td>
+                <td><?php echo date('Ymd-His', $vo['time']); ?></td>
+                <td><?php echo $vo['part']; ?></td>
+                <td><?php echo $vo['compress']; ?></td>
+                <td><?php echo round($vo['size']/1024, 2); ?> K</td>
+                <td><?php echo date('Y-m-d H:i:s', $vo['time']); ?></td>
+                <td> 
                     <div class="layui-btn-group">
-                        <div class="layui-btn-group">
-                            <a href="<?php echo url('edit?id='.$vo['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon"></i></a>
-                            <a data-href="<?php echo url('del?table=表名(无表前缀)&id='.$vo['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small j-tr-del"><i class="layui-icon"></i></a>
-                        </div>
+                        <a data-href="<?php echo url('import?id='.strtotime($key)); ?>" class="layui-btn layui-btn-primary layui-btn-small j-ajax">恢复</a>
+                        <a data-href="<?php echo url('del?id='.strtotime($key)); ?>" class="layui-btn layui-btn-primary layui-btn-small j-tr-del">删除</a>
                     </div>
                 </td>
             </tr>
             <?php endforeach; endif; else: echo "" ;endif; ?>
-
-            </tbody>
-        </table>
-    </div>
+        </tbody>
+    </table>
 </form>
-<?php echo $data->render(); ?>
-
 <script src="/static/admin/js/layui/layui.js?v=<?php echo config('hisiphp.version'); ?>"></script>
 <script>
     var ADMIN_PATH = "<?php echo $_SERVER['SCRIPT_NAME']; ?>", LAYUI_OFFSET = 0;

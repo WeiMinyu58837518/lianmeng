@@ -49,8 +49,7 @@
                 <td>
                     <div class="layui-btn-group">
                         <div class="layui-btn-group">
-                            <a data-href="" class="layui-btn layui-btn-primary layui-btn-small">文字</a>
-                            <a data-href="{:url('edit?id='.$vo['id'])}" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon"></i></a>
+                            <a href="{:url('edit?id='.$vo['id'])}" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon"></i></a>
                             <a data-href="{:url('del?table=表名(无表前缀)&id='.$vo['id'])}" class="layui-btn layui-btn-primary layui-btn-small j-tr-del"><i class="layui-icon"></i></a>
                         </div>
                     </div>
@@ -62,5 +61,6 @@
         </table>
     </div>
 </form>
+{$data->render()}
 
 {include file="admin@block/layui" /}

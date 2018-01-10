@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:51:"D:\Aliases\lianmeng/app/admin\view\doghouse\add.php";i:1515553946;s:45:"D:\Aliases\lianmeng\app\admin\view\layout.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\header.php";i:1515477828;s:50:"D:\Aliases\lianmeng\app\admin\view\block\layui.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\footer.php";i:1515477847;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:52:"D:\Aliases\lianmeng/app/admin\view\doghouse\edit.php";i:1515556745;s:45:"D:\Aliases\lianmeng\app\admin\view\layout.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\header.php";i:1515477828;s:50:"D:\Aliases\lianmeng\app\admin\view\block\layui.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\footer.php";i:1515477847;}*/ ?>
 <?php if(input('param.hisi_iframe') || cookie('hisi_iframe')): ?>
 <!DOCTYPE html>
 <html>
@@ -124,39 +124,40 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             </ul>
             <div class="layui-tab-content page-tab-content">
                 <div class="layui-tab-item layui-show">
-                    <form class="layui-form layui-form-pane" action="<?php echo url('add'); ?>" id="editForm" method="post">
+                    <form class="layui-form layui-form-pane" action="<?php echo url('edit'); ?>" id="editForm" method="post">
     <fieldset class="layui-elem-field layui-field-title">
         <legend>犬舍专访</legend>
     </fieldset>
     <div class="layui-form-item">
         <label class="layui-form-label">标题</label>
         <div class="layui-input-inline">
-            <input type="text" class="layui-input field-username" name="title" lay-verify="title" autocomplete="off" placeholder="请输入文章标题">
+            <input type="text" class="layui-input field-username" value="<?php echo $data['title']; ?>" name="title" lay-verify="title" autocomplete="off" placeholder="请输入文章标题">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">作者</label>
         <div class="layui-input-inline">
-            <input type="text" class="layui-input field-username" name="author" lay-verify="title" autocomplete="off" placeholder="请输入文章作者">
+            <input type="text" class="layui-input field-username" value="<?php echo $data['author']; ?>" name="author" lay-verify="title" autocomplete="off" placeholder="请输入文章作者">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
+    <input type="hidden" name="idd" class="" value="<?php echo $data['id']; ?>">
     <!--图片-->
     <div class="layui-form-item">
         <label class="layui-form-label">封面图上传</label>
         <div class="layui-input-inline upload">
             <button type="button" name="upload" class="layui-btn layui-btn-primary layui-upload" lay-type="image" lay-data="{accept:'image'}">请上传图片</button>
-            <input type="hidden" class="upload-input" name="img" value="">
-            <img src="" style="display:none;border-radius:5px;border:1px solid #ccc" width="36" height="36">
+            <input type="hidden" class="upload-input" name="img" value="<?php echo $data['img']; ?>">
+            <img src="<?php echo $data['img']; ?>" style="border-radius:5px;border:1px solid #ccc" width="36" height="36">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">正文</label>
         <div class="layui-input-block">
-            <textarea id="UEditor2" name="content"></textarea>
-    </div>
+            <textarea id="UEditor2" name="content"><?php echo $data['content']; ?></textarea>
+        </div>
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
@@ -252,39 +253,40 @@ $ca = strtolower(request()->controller().'/'.request()->action());
                 </div>
             </ul>
             <div class="layui-tab-content page-tab-content">
-                <form class="layui-form layui-form-pane" action="<?php echo url('add'); ?>" id="editForm" method="post">
+                <form class="layui-form layui-form-pane" action="<?php echo url('edit'); ?>" id="editForm" method="post">
     <fieldset class="layui-elem-field layui-field-title">
         <legend>犬舍专访</legend>
     </fieldset>
     <div class="layui-form-item">
         <label class="layui-form-label">标题</label>
         <div class="layui-input-inline">
-            <input type="text" class="layui-input field-username" name="title" lay-verify="title" autocomplete="off" placeholder="请输入文章标题">
+            <input type="text" class="layui-input field-username" value="<?php echo $data['title']; ?>" name="title" lay-verify="title" autocomplete="off" placeholder="请输入文章标题">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">作者</label>
         <div class="layui-input-inline">
-            <input type="text" class="layui-input field-username" name="author" lay-verify="title" autocomplete="off" placeholder="请输入文章作者">
+            <input type="text" class="layui-input field-username" value="<?php echo $data['author']; ?>" name="author" lay-verify="title" autocomplete="off" placeholder="请输入文章作者">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
+    <input type="hidden" name="idd" class="" value="<?php echo $data['id']; ?>">
     <!--图片-->
     <div class="layui-form-item">
         <label class="layui-form-label">封面图上传</label>
         <div class="layui-input-inline upload">
             <button type="button" name="upload" class="layui-btn layui-btn-primary layui-upload" lay-type="image" lay-data="{accept:'image'}">请上传图片</button>
-            <input type="hidden" class="upload-input" name="img" value="">
-            <img src="" style="display:none;border-radius:5px;border:1px solid #ccc" width="36" height="36">
+            <input type="hidden" class="upload-input" name="img" value="<?php echo $data['img']; ?>">
+            <img src="<?php echo $data['img']; ?>" style="border-radius:5px;border:1px solid #ccc" width="36" height="36">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">正文</label>
         <div class="layui-input-block">
-            <textarea id="UEditor2" name="content"></textarea>
-    </div>
+            <textarea id="UEditor2" name="content"><?php echo $data['content']; ?></textarea>
+        </div>
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
@@ -363,39 +365,40 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         </div>
     <?php break; case "3": ?>
     
-        <form class="layui-form layui-form-pane" action="<?php echo url('add'); ?>" id="editForm" method="post">
+        <form class="layui-form layui-form-pane" action="<?php echo url('edit'); ?>" id="editForm" method="post">
     <fieldset class="layui-elem-field layui-field-title">
         <legend>犬舍专访</legend>
     </fieldset>
     <div class="layui-form-item">
         <label class="layui-form-label">标题</label>
         <div class="layui-input-inline">
-            <input type="text" class="layui-input field-username" name="title" lay-verify="title" autocomplete="off" placeholder="请输入文章标题">
+            <input type="text" class="layui-input field-username" value="<?php echo $data['title']; ?>" name="title" lay-verify="title" autocomplete="off" placeholder="请输入文章标题">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">作者</label>
         <div class="layui-input-inline">
-            <input type="text" class="layui-input field-username" name="author" lay-verify="title" autocomplete="off" placeholder="请输入文章作者">
+            <input type="text" class="layui-input field-username" value="<?php echo $data['author']; ?>" name="author" lay-verify="title" autocomplete="off" placeholder="请输入文章作者">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
+    <input type="hidden" name="idd" class="" value="<?php echo $data['id']; ?>">
     <!--图片-->
     <div class="layui-form-item">
         <label class="layui-form-label">封面图上传</label>
         <div class="layui-input-inline upload">
             <button type="button" name="upload" class="layui-btn layui-btn-primary layui-upload" lay-type="image" lay-data="{accept:'image'}">请上传图片</button>
-            <input type="hidden" class="upload-input" name="img" value="">
-            <img src="" style="display:none;border-radius:5px;border:1px solid #ccc" width="36" height="36">
+            <input type="hidden" class="upload-input" name="img" value="<?php echo $data['img']; ?>">
+            <img src="<?php echo $data['img']; ?>" style="border-radius:5px;border:1px solid #ccc" width="36" height="36">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">正文</label>
         <div class="layui-input-block">
-            <textarea id="UEditor2" name="content"></textarea>
-    </div>
+            <textarea id="UEditor2" name="content"><?php echo $data['content']; ?></textarea>
+        </div>
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
@@ -484,39 +487,40 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             </ul>
             <div class="layui-tab-content page-tab-content">
                 <div class="layui-tab-item layui-show">
-                    <form class="layui-form layui-form-pane" action="<?php echo url('add'); ?>" id="editForm" method="post">
+                    <form class="layui-form layui-form-pane" action="<?php echo url('edit'); ?>" id="editForm" method="post">
     <fieldset class="layui-elem-field layui-field-title">
         <legend>犬舍专访</legend>
     </fieldset>
     <div class="layui-form-item">
         <label class="layui-form-label">标题</label>
         <div class="layui-input-inline">
-            <input type="text" class="layui-input field-username" name="title" lay-verify="title" autocomplete="off" placeholder="请输入文章标题">
+            <input type="text" class="layui-input field-username" value="<?php echo $data['title']; ?>" name="title" lay-verify="title" autocomplete="off" placeholder="请输入文章标题">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">作者</label>
         <div class="layui-input-inline">
-            <input type="text" class="layui-input field-username" name="author" lay-verify="title" autocomplete="off" placeholder="请输入文章作者">
+            <input type="text" class="layui-input field-username" value="<?php echo $data['author']; ?>" name="author" lay-verify="title" autocomplete="off" placeholder="请输入文章作者">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
+    <input type="hidden" name="idd" class="" value="<?php echo $data['id']; ?>">
     <!--图片-->
     <div class="layui-form-item">
         <label class="layui-form-label">封面图上传</label>
         <div class="layui-input-inline upload">
             <button type="button" name="upload" class="layui-btn layui-btn-primary layui-upload" lay-type="image" lay-data="{accept:'image'}">请上传图片</button>
-            <input type="hidden" class="upload-input" name="img" value="">
-            <img src="" style="display:none;border-radius:5px;border:1px solid #ccc" width="36" height="36">
+            <input type="hidden" class="upload-input" name="img" value="<?php echo $data['img']; ?>">
+            <img src="<?php echo $data['img']; ?>" style="border-radius:5px;border:1px solid #ccc" width="36" height="36">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">正文</label>
         <div class="layui-input-block">
-            <textarea id="UEditor2" name="content"></textarea>
-    </div>
+            <textarea id="UEditor2" name="content"><?php echo $data['content']; ?></textarea>
+        </div>
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">

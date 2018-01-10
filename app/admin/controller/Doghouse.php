@@ -9,8 +9,10 @@
 namespace app\admin\controller;
 
 
+use function date;
 use think\Db;
 use think\Request;
+use think\Validate;
 
 class Doghouse extends Admin
 {
@@ -25,29 +27,77 @@ class Doghouse extends Admin
             return $this->fetch();
         }
         if(Request::instance()->isPost()){
-            $title=Request::instance()->param('title');
-            $author=Request::instance()->param('author');
-            $content=Request::instance()->param('content');
+            $data=Request::instance()->param();
             $rules = [
-                'name' => 'require',
-                'type' => 'require|integer',
-                'merchant' => 'require|integer',
-                'num' => 'require|integer',
-                'intro' => 'require'
+                'title' => 'require',
+                'author' => 'require',
+                'img'=>'require',
+                'content' => 'require'
             ];
             $msg = [
-                'name.require' => '商品名称不能为空',
-                'name.max' => '商品名称太长',
-                'type.require' => '商品类型不能为空',
-                'type.integer' => '商品类型不正确',
-                'merchant.require' => '商家不能为空',
-                'merchant.integer' => '商家不正确',
-                'num.require' => '商品库存不能为空',
-                'num.integer' => '库存输入不正确',
-                'intro.require' => '请输入商品简介'
+                'title.require'=>'文章标题不能为空',
+                'author.require'=>'作者不能为空',
+                'img.require'=>'请上传图片',
+                'content.require'=>'正文不能为空'
             ];
             $validate = new Validate($rules, $msg);
+            $res = $validate->check($data);
+            if(!$res){
+                $this->error($validate->getError());
+            }
+            //验证结束入库
+
+            $id=Db::name('doghouse')->insertGetId(['title'=>$data['title'],'author'=>$data['author'],'img'=>$data['img'],'ctime'=>date('Y-m-d H:i:s',time()),'ptime'=>date('Y-m-d H:i:s',time())]);
+            $res=Db::name('doghouse_content')->insert(['doghouse_id'=>$id,'content'=>$data['content']]);
+            if($res){
+                $this->success('添加成功');
+            }else{
+                $this->error('添加失败');
+            }
         }
 
+    }
+    public function edit(){
+        if(Request::instance()->isGet()){
+            $id=Request::instance()->param('id');
+            $data=Db::name('doghouse')->alias('d1')->join('lm_doghouse_content d2','d1.id=d2.doghouse_id')->find();
+            $this->assign('data',$data);
+            return $this->fetch();
+        }
+        if(Request::instance()->isPost()){
+            $data=Request::instance()->param();
+            $rules = [
+                'title' => 'require',
+                'author' => 'require',
+                'img'=>'require',
+                'content' => 'require'
+            ];
+            $msg = [
+                'title.require'=>'文章标题不能为空',
+                'author.require'=>'作者不能为空',
+                'img.require'=>'请上传图片',
+                'content.require'=>'正文不能为空'
+            ];
+            $validate = new Validate($rules, $msg);
+            $res = $validate->check($data);
+            if(!$res){
+                $this->error($validate->getError());
+            }
+            //验证结束入库
+            $res=true;
+            $ress=Db::name('doghouse')->where('id',$data['idd'])->update(['title'=>$data['title'],'author'=>$data['author'],'img'=>$data['img'],'ptime'=>date('Y-m-d H:i:s',time())]);
+            if(!$ress){
+                $res=false;
+            }
+            $resss=Db::name('doghouse_content')->where('doghouse_id',$data['idd'])->update(['content'=>$data['content']]);
+            if(!$resss){
+                $res=false;
+            }
+            if($res){
+                $this->success('添加成功');
+            }else{
+                $this->error('添加失败');
+            }
+        }
     }
 }
