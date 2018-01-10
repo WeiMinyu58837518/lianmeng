@@ -10,6 +10,7 @@ namespace app\admin\controller;
 
 
 use function date;
+use function halt;
 use think\Db;
 use think\Request;
 use think\Validate;
@@ -104,6 +105,11 @@ class Doghouse extends Admin
         }
     }
     public function deleteall(){
-
+        $ids=Request::instance()->param();
+        foreach($ids['delete'] as $k=>$v){
+            Db::name('doghouse')->where('id',$v)->delete();
+            Db::name('doghouse_content')->where('doghouse_id',$v)->delete();
+        }
+        $this->success('删除成功','index');
     }
 }

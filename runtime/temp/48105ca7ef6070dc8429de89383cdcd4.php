@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:53:"D:\Aliases\lianmeng/app/admin\view\doghouse\index.php";i:1515567841;s:45:"D:\Aliases\lianmeng\app\admin\view\layout.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\header.php";i:1515477828;s:50:"D:\Aliases\lianmeng\app\admin\view\block\layui.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\footer.php";i:1515477847;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:53:"D:\Aliases\lianmeng/app/admin\view\doghouse\index.php";i:1515573209;s:45:"D:\Aliases\lianmeng\app\admin\view\layout.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\header.php";i:1515477828;s:50:"D:\Aliases\lianmeng\app\admin\view\block\layui.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\footer.php";i:1515477847;}*/ ?>
 <?php if(input('param.hisi_iframe') || cookie('hisi_iframe')): ?>
 <!DOCTYPE html>
 <html>
@@ -129,7 +129,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         <div class="layui-btn-group fl">
 
             <a href="<?php echo url('add'); ?>" class="layui-btn layui-btn-primary"><i class="aicon ai-tianjia"></i>添加</a>
-            <a href="<?php echo url('del?table=表名(无表前缀)'); ?>" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="aicon ai-jinyong"></i>删除</a>
+            <a href="<?php echo url('deleteall'); ?>" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="aicon ai-jinyong"></i>删除</a>
 
         </div>
         <div class="page-filter fr">
@@ -199,7 +199,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         version: '<?php echo config("hisiphp.version"); ?>'
     }).use('global');
 </script>
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="/static/js/jquery.js"></script>
 <script>
     $(".delete").click(function(){
         if(confirm('是否确认？')){
@@ -218,6 +218,12 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             })
         }
     })
+</script>
+
+<script>
+//    $("#deleteall").click(function(){
+//        alert(1)
+//    })
 </script>
                 </div>
             </div>
@@ -245,7 +251,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         <div class="layui-btn-group fl">
 
             <a href="<?php echo url('add'); ?>" class="layui-btn layui-btn-primary"><i class="aicon ai-tianjia"></i>添加</a>
-            <a href="<?php echo url('del?table=表名(无表前缀)'); ?>" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="aicon ai-jinyong"></i>删除</a>
+            <a href="<?php echo url('deleteall'); ?>" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="aicon ai-jinyong"></i>删除</a>
 
         </div>
         <div class="page-filter fr">
@@ -315,7 +321,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         version: '<?php echo config("hisiphp.version"); ?>'
     }).use('global');
 </script>
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="/static/js/jquery.js"></script>
 <script>
     $(".delete").click(function(){
         if(confirm('是否确认？')){
@@ -334,6 +340,12 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             })
         }
     })
+</script>
+
+<script>
+//    $("#deleteall").click(function(){
+//        alert(1)
+//    })
 </script>
             </div>
         </div>
@@ -344,7 +356,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         <div class="layui-btn-group fl">
 
             <a href="<?php echo url('add'); ?>" class="layui-btn layui-btn-primary"><i class="aicon ai-tianjia"></i>添加</a>
-            <a href="<?php echo url('del?table=表名(无表前缀)'); ?>" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="aicon ai-jinyong"></i>删除</a>
+            <a href="<?php echo url('deleteall'); ?>" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="aicon ai-jinyong"></i>删除</a>
 
         </div>
         <div class="page-filter fr">
@@ -414,7 +426,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         version: '<?php echo config("hisiphp.version"); ?>'
     }).use('global');
 </script>
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="/static/js/jquery.js"></script>
 <script>
     $(".delete").click(function(){
         if(confirm('是否确认？')){
@@ -433,6 +445,12 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             })
         }
     })
+</script>
+
+<script>
+//    $("#deleteall").click(function(){
+//        alert(1)
+//    })
 </script>
     <?php break; default: ?>
     
@@ -453,7 +471,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         <div class="layui-btn-group fl">
 
             <a href="<?php echo url('add'); ?>" class="layui-btn layui-btn-primary"><i class="aicon ai-tianjia"></i>添加</a>
-            <a href="<?php echo url('del?table=表名(无表前缀)'); ?>" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="aicon ai-jinyong"></i>删除</a>
+            <a href="<?php echo url('deleteall'); ?>" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="aicon ai-jinyong"></i>删除</a>
 
         </div>
         <div class="page-filter fr">
@@ -523,7 +541,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         version: '<?php echo config("hisiphp.version"); ?>'
     }).use('global');
 </script>
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="/static/js/jquery.js"></script>
 <script>
     $(".delete").click(function(){
         if(confirm('是否确认？')){
@@ -542,6 +560,12 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             })
         }
     })
+</script>
+
+<script>
+//    $("#deleteall").click(function(){
+//        alert(1)
+//    })
 </script>
                 </div>
             </div>

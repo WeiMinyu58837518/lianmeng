@@ -3,7 +3,7 @@
         <div class="layui-btn-group fl">
 
             <a href="{:url('add')}" class="layui-btn layui-btn-primary"><i class="aicon ai-tianjia"></i>添加</a>
-            <a href="{:url('del?table=表名(无表前缀)')}" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="aicon ai-jinyong"></i>删除</a>
+            <a href="{:url('deleteall')}" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="aicon ai-jinyong"></i>删除</a>
 
         </div>
         <div class="page-filter fr">
@@ -66,7 +66,7 @@
 </form>
 {$data->render()}
 {include file="admin@block/layui" /}
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="/static/js/jquery.js"></script>
 <script>
     $(".delete").click(function(){
         if(confirm('是否确认？')){
@@ -85,4 +85,10 @@
             })
         }
     })
+</script>
+
+<script>
+//    $("#deleteall").click(function(){
+//        alert(1)
+//    })
 </script>

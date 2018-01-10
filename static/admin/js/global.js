@@ -322,11 +322,19 @@ layui.define(['element', 'form'], function(exports) {
                 }
                 if (that.parents('form')[0]) {
                     var query = that.parents('form').serialize();
+                    var query1=[];
+                    for(var i=0;i<$('tbody').find('tr').length;i++){
+                        query1.push($('tbody').find('tr').eq(i).find('div').siblings('input').val());
+                    }
+                    var a={
+                        query:query,
+                        delete:query1
+                    }
                 } else {
                     var query = $('#pageListForm').serialize();
                 }
                 layer.msg('数据提交中...',{time:500000});
-                $.post(href, query, function(res) {
+                $.post(href, a,function(res) {
                     layer.msg(res.msg, {}, function(){
                         if (res.code != 0) {
                             location.reload();

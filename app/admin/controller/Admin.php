@@ -15,6 +15,7 @@ use app\admin\model\AdminMenu as MenuModel;
 use app\admin\model\AdminRole as RoleModel;
 use app\admin\model\AdminUser as UserModel;
 use app\admin\model\AdminLog as LogModel;
+use function input;
 use think\Db;
 /**
  * 后台公共控制器
@@ -179,6 +180,7 @@ class Admin extends Common
         $map[$pk] = ['in', $ids];
 
         $res = Db::name($table)->where($map)->delete();
+
         if ($res === false) {
             return $this->error('删除失败');
         }

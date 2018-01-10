@@ -58,3 +58,31 @@
 [ 2018-01-10T14:12:22+08:00 ] 0.0.0.0 GET /admin/game/edit/id/3.html
 [ info ] www.lianmeng.com/admin/game/edit/id/3.html [运行时间：0.166318s][吞吐率：6.01req/s] [内存消耗：2,867.49kb] [文件加载：86]
 [ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'G1.ID=G2.TYPE_ID JOIN `lm_left` `join` ON lm_game g2 WHERE  `id` = ? LIMIT 1' at line 1[D:\Aliases\lianmeng\thinkphp\library\think\db\Connection.php:388]
+---------------------------------------------------------------
+[ 2018-01-10T15:50:22+08:00 ] 0.0.0.0 POST /admin/doghouse/index.html
+[ info ] www.lianmeng.com/admin/doghouse/index.html [运行时间：0.155387s][吞吐率：6.44req/s] [内存消耗：2,892.52kb] [文件加载：84]
+[ error ] [8]未定义变量: _admin_menu_current[D:\Aliases\lianmeng\runtime\temp\48105ca7ef6070dc8429de89383cdcd4.php:19]
+---------------------------------------------------------------
+[ 2018-01-10T15:55:34+08:00 ] 0.0.0.0 POST /admin/doghouse/index.html
+[ info ] www.lianmeng.com/admin/doghouse/index.html [运行时间：0.156968s][吞吐率：6.37req/s] [内存消耗：2,892.85kb] [文件加载：84]
+[ error ] [8]未定义变量: _admin_menu_current[D:\Aliases\lianmeng\runtime\temp\48105ca7ef6070dc8429de89383cdcd4.php:19]
+---------------------------------------------------------------
+[ 2018-01-10T15:58:24+08:00 ] 0.0.0.0 POST /admin/doghouse/index.html
+[ info ] www.lianmeng.com/admin/doghouse/index.html [运行时间：0.178218s][吞吐率：5.61req/s] [内存消耗：2,892.34kb] [文件加载：84]
+[ error ] [8]未定义变量: _admin_menu_current[D:\Aliases\lianmeng\runtime\temp\48105ca7ef6070dc8429de89383cdcd4.php:19]
+---------------------------------------------------------------
+[ 2018-01-10T15:58:41+08:00 ] 0.0.0.0 POST /admin/doghouse/index.html
+[ info ] www.lianmeng.com/admin/doghouse/index.html [运行时间：0.159231s][吞吐率：6.28req/s] [内存消耗：2,892.85kb] [文件加载：84]
+[ error ] [8]未定义变量: _admin_menu_current[D:\Aliases\lianmeng\runtime\temp\48105ca7ef6070dc8429de89383cdcd4.php:19]
+---------------------------------------------------------------
+[ 2018-01-10T15:59:12+08:00 ] 0.0.0.0 POST /admin/doghouse/index.html
+[ info ] www.lianmeng.com/admin/doghouse/index.html [运行时间：0.152343s][吞吐率：6.56req/s] [内存消耗：2,892.85kb] [文件加载：84]
+[ error ] [8]未定义变量: _admin_menu_current[D:\Aliases\lianmeng\runtime\temp\48105ca7ef6070dc8429de89383cdcd4.php:19]
+---------------------------------------------------------------
+[ 2018-01-10T17:34:05+08:00 ] 0.0.0.0 POST /admin/doghouse/deleteall.html
+[ info ] www.lianmeng.com/admin/doghouse/deleteall.html [运行时间：0.146707s][吞吐率：6.82req/s] [内存消耗：2,762.70kb] [文件加载：78]
+[ error ] [0]variable type error：array[D:\Aliases\lianmeng\thinkphp\library\think\Request.php:1133]
+---------------------------------------------------------------
+[ 2018-01-10T17:34:42+08:00 ] 0.0.0.0 POST /admin/doghouse/deleteall.html
+[ info ] www.lianmeng.com/admin/doghouse/deleteall.html [运行时间：0.146051s][吞吐率：6.85req/s] [内存消耗：2,768.66kb] [文件加载：80]
+[ error ] [8]Trying to get property of non-object[D:\Aliases\lianmeng\app\admin\controller\Doghouse.php:109]
