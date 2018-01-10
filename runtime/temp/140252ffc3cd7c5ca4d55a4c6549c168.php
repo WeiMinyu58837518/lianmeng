@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:52:"D:\Aliases\lianmeng/app/admin\view\doghouse\edit.php";i:1515556745;s:45:"D:\Aliases\lianmeng\app\admin\view\layout.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\header.php";i:1515477828;s:50:"D:\Aliases\lianmeng\app\admin\view\block\layui.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\footer.php";i:1515477847;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:52:"D:\Aliases\lianmeng/app/admin\view\doghouse\edit.php";i:1515567955;s:45:"D:\Aliases\lianmeng\app\admin\view\layout.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\header.php";i:1515477828;s:50:"D:\Aliases\lianmeng\app\admin\view\block\layui.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\footer.php";i:1515477847;}*/ ?>
 <?php if(input('param.hisi_iframe') || cookie('hisi_iframe')): ?>
 <!DOCTYPE html>
 <html>
@@ -147,7 +147,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
     <div class="layui-form-item">
         <label class="layui-form-label">封面图上传</label>
         <div class="layui-input-inline upload">
-            <button type="button" name="upload" class="layui-btn layui-btn-primary layui-upload" lay-type="image" lay-data="{accept:'image'}">请上传图片</button>
+            <button type="button" name="upload" class="layui-btn layui-btn-primary layui-upload" lay-type="image" lay-data="{accept:'image'}">请修改图片</button>
             <input type="hidden" class="upload-input" name="img" value="<?php echo $data['img']; ?>">
             <img src="<?php echo $data['img']; ?>" style="border-radius:5px;border:1px solid #ccc" width="36" height="36">
         </div>
@@ -276,7 +276,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
     <div class="layui-form-item">
         <label class="layui-form-label">封面图上传</label>
         <div class="layui-input-inline upload">
-            <button type="button" name="upload" class="layui-btn layui-btn-primary layui-upload" lay-type="image" lay-data="{accept:'image'}">请上传图片</button>
+            <button type="button" name="upload" class="layui-btn layui-btn-primary layui-upload" lay-type="image" lay-data="{accept:'image'}">请修改图片</button>
             <input type="hidden" class="upload-input" name="img" value="<?php echo $data['img']; ?>">
             <img src="<?php echo $data['img']; ?>" style="border-radius:5px;border:1px solid #ccc" width="36" height="36">
         </div>
@@ -388,7 +388,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
     <div class="layui-form-item">
         <label class="layui-form-label">封面图上传</label>
         <div class="layui-input-inline upload">
-            <button type="button" name="upload" class="layui-btn layui-btn-primary layui-upload" lay-type="image" lay-data="{accept:'image'}">请上传图片</button>
+            <button type="button" name="upload" class="layui-btn layui-btn-primary layui-upload" lay-type="image" lay-data="{accept:'image'}">请修改图片</button>
             <input type="hidden" class="upload-input" name="img" value="<?php echo $data['img']; ?>">
             <img src="<?php echo $data['img']; ?>" style="border-radius:5px;border:1px solid #ccc" width="36" height="36">
         </div>
@@ -510,7 +510,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
     <div class="layui-form-item">
         <label class="layui-form-label">封面图上传</label>
         <div class="layui-input-inline upload">
-            <button type="button" name="upload" class="layui-btn layui-btn-primary layui-upload" lay-type="image" lay-data="{accept:'image'}">请上传图片</button>
+            <button type="button" name="upload" class="layui-btn layui-btn-primary layui-upload" lay-type="image" lay-data="{accept:'image'}">请修改图片</button>
             <input type="hidden" class="upload-input" name="img" value="<?php echo $data['img']; ?>">
             <img src="<?php echo $data['img']; ?>" style="border-radius:5px;border:1px solid #ccc" width="36" height="36">
         </div>

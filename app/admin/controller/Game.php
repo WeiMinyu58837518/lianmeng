@@ -16,7 +16,7 @@ use think\Validate;
 class Game extends Admin
 {
     public function index(){
-        $data=Db::name('gametype')->select();
+        $data=Db::name('gametype')->order('id','asc')->select();
         $this->assign('data',$data);
         return $this->fetch();
     }

@@ -21,7 +21,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">封面图上传</label>
         <div class="layui-input-inline upload">
-            <button type="button" name="upload" class="layui-btn layui-btn-primary layui-upload" lay-type="image" lay-data="{accept:'image'}">请上传图片</button>
+            <button type="button" name="upload" class="layui-btn layui-btn-primary layui-upload" lay-type="image" lay-data="{accept:'image'}">请修改图片</button>
             <input type="hidden" class="upload-input" name="img" value="{$data['img']}">
             <img src="{$data['img']}" style="border-radius:5px;border:1px solid #ccc" width="36" height="36">
         </div>

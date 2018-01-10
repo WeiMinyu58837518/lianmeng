@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:53:"D:\Aliases\lianmeng/app/admin\view\doghouse\index.php";i:1515555219;s:45:"D:\Aliases\lianmeng\app\admin\view\layout.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\header.php";i:1515477828;s:50:"D:\Aliases\lianmeng\app\admin\view\block\layui.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\footer.php";i:1515477847;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:53:"D:\Aliases\lianmeng/app/admin\view\doghouse\index.php";i:1515567841;s:45:"D:\Aliases\lianmeng\app\admin\view\layout.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\header.php";i:1515477828;s:50:"D:\Aliases\lianmeng\app\admin\view\block\layui.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\footer.php";i:1515477847;}*/ ?>
 <?php if(input('param.hisi_iframe') || cookie('hisi_iframe')): ?>
 <!DOCTYPE html>
 <html>
@@ -147,6 +147,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         <table class="layui-table mt10" lay-even="" lay-skin="row">
             <colgroup>
                 <col width="50">
+                <col width="50">
                 <col width="200">
                 <col width="100">
                 <col width="100">
@@ -156,6 +157,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             <thead>
             <tr>
                 <th><input type="checkbox" lay-skin="primary" lay-filter="allChoose"></th>
+                <th>序号</th>
                 <th>标题</th>
                 <th>作者</th>
                 <th>创建时间</th>
@@ -165,9 +167,10 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             </thead>
             <tbody>
 
-            <?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+            <?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): $ke = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($ke % 2 );++$ke;?>
             <tr>
                 <td><input type="checkbox" class="layui-checkbox checkbox-ids" name="ids[]" value="<?php echo $vo['id']; ?>" lay-skin="primary"></td>
+                <td><?php echo $ke; ?></td>
                 <td><?php echo $vo['title']; ?></td>
                 <td><?php echo $vo['author']; ?></td>
                 <td><?php echo $vo['ctime']; ?></td>
@@ -176,7 +179,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
                     <div class="layui-btn-group">
                         <div class="layui-btn-group">
                             <a href="<?php echo url('edit?id='.$vo['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon"></i></a>
-                            <a data-href="<?php echo url('del?table=表名(无表前缀)&id='.$vo['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small j-tr-del"><i class="layui-icon"></i></a>
+                            <a href="#" class="layui-btn layui-btn-primary layui-btn-small delete" idd="<?php echo $vo['id']; ?>"><i class="layui-icon"></i></a>
                         </div>
                     </div>
                 </td>
@@ -188,7 +191,6 @@ $ca = strtolower(request()->controller().'/'.request()->action());
     </div>
 </form>
 <?php echo $data->render(); ?>
-
 <script src="/static/admin/js/layui/layui.js?v=<?php echo config('hisiphp.version'); ?>"></script>
 <script>
     var ADMIN_PATH = "<?php echo $_SERVER['SCRIPT_NAME']; ?>", LAYUI_OFFSET = 0;
@@ -196,6 +198,26 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         base: '/static/admin/js/',
         version: '<?php echo config("hisiphp.version"); ?>'
     }).use('global');
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(".delete").click(function(){
+        if(confirm('是否确认？')){
+            var id=$(this).attr('idd');
+            $.get('delete/id/'+id,function (a) {
+                if(a.info==10000){
+                    alert('删除成功');
+                    location.href='index';
+                }
+                if(a.info==20000){
+                    layer.open({
+                        title: '提示',
+                        content: '删除失败'
+                    });
+                }
+            })
+        }
+    })
 </script>
                 </div>
             </div>
@@ -241,6 +263,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         <table class="layui-table mt10" lay-even="" lay-skin="row">
             <colgroup>
                 <col width="50">
+                <col width="50">
                 <col width="200">
                 <col width="100">
                 <col width="100">
@@ -250,6 +273,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             <thead>
             <tr>
                 <th><input type="checkbox" lay-skin="primary" lay-filter="allChoose"></th>
+                <th>序号</th>
                 <th>标题</th>
                 <th>作者</th>
                 <th>创建时间</th>
@@ -259,9 +283,10 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             </thead>
             <tbody>
 
-            <?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+            <?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): $ke = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($ke % 2 );++$ke;?>
             <tr>
                 <td><input type="checkbox" class="layui-checkbox checkbox-ids" name="ids[]" value="<?php echo $vo['id']; ?>" lay-skin="primary"></td>
+                <td><?php echo $ke; ?></td>
                 <td><?php echo $vo['title']; ?></td>
                 <td><?php echo $vo['author']; ?></td>
                 <td><?php echo $vo['ctime']; ?></td>
@@ -270,7 +295,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
                     <div class="layui-btn-group">
                         <div class="layui-btn-group">
                             <a href="<?php echo url('edit?id='.$vo['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon"></i></a>
-                            <a data-href="<?php echo url('del?table=表名(无表前缀)&id='.$vo['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small j-tr-del"><i class="layui-icon"></i></a>
+                            <a href="#" class="layui-btn layui-btn-primary layui-btn-small delete" idd="<?php echo $vo['id']; ?>"><i class="layui-icon"></i></a>
                         </div>
                     </div>
                 </td>
@@ -282,7 +307,6 @@ $ca = strtolower(request()->controller().'/'.request()->action());
     </div>
 </form>
 <?php echo $data->render(); ?>
-
 <script src="/static/admin/js/layui/layui.js?v=<?php echo config('hisiphp.version'); ?>"></script>
 <script>
     var ADMIN_PATH = "<?php echo $_SERVER['SCRIPT_NAME']; ?>", LAYUI_OFFSET = 0;
@@ -290,6 +314,26 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         base: '/static/admin/js/',
         version: '<?php echo config("hisiphp.version"); ?>'
     }).use('global');
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(".delete").click(function(){
+        if(confirm('是否确认？')){
+            var id=$(this).attr('idd');
+            $.get('delete/id/'+id,function (a) {
+                if(a.info==10000){
+                    alert('删除成功');
+                    location.href='index';
+                }
+                if(a.info==20000){
+                    layer.open({
+                        title: '提示',
+                        content: '删除失败'
+                    });
+                }
+            })
+        }
+    })
 </script>
             </div>
         </div>
@@ -318,6 +362,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         <table class="layui-table mt10" lay-even="" lay-skin="row">
             <colgroup>
                 <col width="50">
+                <col width="50">
                 <col width="200">
                 <col width="100">
                 <col width="100">
@@ -327,6 +372,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             <thead>
             <tr>
                 <th><input type="checkbox" lay-skin="primary" lay-filter="allChoose"></th>
+                <th>序号</th>
                 <th>标题</th>
                 <th>作者</th>
                 <th>创建时间</th>
@@ -336,9 +382,10 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             </thead>
             <tbody>
 
-            <?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+            <?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): $ke = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($ke % 2 );++$ke;?>
             <tr>
                 <td><input type="checkbox" class="layui-checkbox checkbox-ids" name="ids[]" value="<?php echo $vo['id']; ?>" lay-skin="primary"></td>
+                <td><?php echo $ke; ?></td>
                 <td><?php echo $vo['title']; ?></td>
                 <td><?php echo $vo['author']; ?></td>
                 <td><?php echo $vo['ctime']; ?></td>
@@ -347,7 +394,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
                     <div class="layui-btn-group">
                         <div class="layui-btn-group">
                             <a href="<?php echo url('edit?id='.$vo['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon"></i></a>
-                            <a data-href="<?php echo url('del?table=表名(无表前缀)&id='.$vo['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small j-tr-del"><i class="layui-icon"></i></a>
+                            <a href="#" class="layui-btn layui-btn-primary layui-btn-small delete" idd="<?php echo $vo['id']; ?>"><i class="layui-icon"></i></a>
                         </div>
                     </div>
                 </td>
@@ -359,7 +406,6 @@ $ca = strtolower(request()->controller().'/'.request()->action());
     </div>
 </form>
 <?php echo $data->render(); ?>
-
 <script src="/static/admin/js/layui/layui.js?v=<?php echo config('hisiphp.version'); ?>"></script>
 <script>
     var ADMIN_PATH = "<?php echo $_SERVER['SCRIPT_NAME']; ?>", LAYUI_OFFSET = 0;
@@ -367,6 +413,26 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         base: '/static/admin/js/',
         version: '<?php echo config("hisiphp.version"); ?>'
     }).use('global');
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(".delete").click(function(){
+        if(confirm('是否确认？')){
+            var id=$(this).attr('idd');
+            $.get('delete/id/'+id,function (a) {
+                if(a.info==10000){
+                    alert('删除成功');
+                    location.href='index';
+                }
+                if(a.info==20000){
+                    layer.open({
+                        title: '提示',
+                        content: '删除失败'
+                    });
+                }
+            })
+        }
+    })
 </script>
     <?php break; default: ?>
     
@@ -405,6 +471,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         <table class="layui-table mt10" lay-even="" lay-skin="row">
             <colgroup>
                 <col width="50">
+                <col width="50">
                 <col width="200">
                 <col width="100">
                 <col width="100">
@@ -414,6 +481,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             <thead>
             <tr>
                 <th><input type="checkbox" lay-skin="primary" lay-filter="allChoose"></th>
+                <th>序号</th>
                 <th>标题</th>
                 <th>作者</th>
                 <th>创建时间</th>
@@ -423,9 +491,10 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             </thead>
             <tbody>
 
-            <?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+            <?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): $ke = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($ke % 2 );++$ke;?>
             <tr>
                 <td><input type="checkbox" class="layui-checkbox checkbox-ids" name="ids[]" value="<?php echo $vo['id']; ?>" lay-skin="primary"></td>
+                <td><?php echo $ke; ?></td>
                 <td><?php echo $vo['title']; ?></td>
                 <td><?php echo $vo['author']; ?></td>
                 <td><?php echo $vo['ctime']; ?></td>
@@ -434,7 +503,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
                     <div class="layui-btn-group">
                         <div class="layui-btn-group">
                             <a href="<?php echo url('edit?id='.$vo['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon"></i></a>
-                            <a data-href="<?php echo url('del?table=表名(无表前缀)&id='.$vo['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small j-tr-del"><i class="layui-icon"></i></a>
+                            <a href="#" class="layui-btn layui-btn-primary layui-btn-small delete" idd="<?php echo $vo['id']; ?>"><i class="layui-icon"></i></a>
                         </div>
                     </div>
                 </td>
@@ -446,7 +515,6 @@ $ca = strtolower(request()->controller().'/'.request()->action());
     </div>
 </form>
 <?php echo $data->render(); ?>
-
 <script src="/static/admin/js/layui/layui.js?v=<?php echo config('hisiphp.version'); ?>"></script>
 <script>
     var ADMIN_PATH = "<?php echo $_SERVER['SCRIPT_NAME']; ?>", LAYUI_OFFSET = 0;
@@ -454,6 +522,26 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         base: '/static/admin/js/',
         version: '<?php echo config("hisiphp.version"); ?>'
     }).use('global');
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(".delete").click(function(){
+        if(confirm('是否确认？')){
+            var id=$(this).attr('idd');
+            $.get('delete/id/'+id,function (a) {
+                if(a.info==10000){
+                    alert('删除成功');
+                    location.href='index';
+                }
+                if(a.info==20000){
+                    layer.open({
+                        title: '提示',
+                        content: '删除失败'
+                    });
+                }
+            })
+        }
+    })
 </script>
                 </div>
             </div>

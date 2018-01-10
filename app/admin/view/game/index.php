@@ -13,16 +13,15 @@
             </colgroup>
             <thead>
             <tr>
-                <th>id</th>
+                <th>序号</th>
                 <th>比赛种类</th>
                 <th>操作</th>
             </tr>
             </thead>
             <tbody>
-
-            {volist name="data" id="vo"}
+            {volist name="data" id="vo" key='ke'}
             <tr>
-                <td>{$vo['id']}</td>
+                <td>{$ke}</td>
                 <td>{$vo['name']}</td>
                 <td>
                     <div class="layui-btn-group">

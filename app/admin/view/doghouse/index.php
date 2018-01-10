@@ -21,6 +21,7 @@
         <table class="layui-table mt10" lay-even="" lay-skin="row">
             <colgroup>
                 <col width="50">
+                <col width="50">
                 <col width="200">
                 <col width="100">
                 <col width="100">
@@ -30,6 +31,7 @@
             <thead>
             <tr>
                 <th><input type="checkbox" lay-skin="primary" lay-filter="allChoose"></th>
+                <th>序号</th>
                 <th>标题</th>
                 <th>作者</th>
                 <th>创建时间</th>
@@ -39,9 +41,10 @@
             </thead>
             <tbody>
 
-            {volist name="data" id="vo"}
+            {volist name="data" id="vo" key='ke'}
             <tr>
                 <td><input type="checkbox" class="layui-checkbox checkbox-ids" name="ids[]" value="{$vo['id']}" lay-skin="primary"></td>
+                <td>{$ke}</td>
                 <td>{$vo['title']}</td>
                 <td>{$vo['author']}</td>
                 <td>{$vo['ctime']}</td>
@@ -50,7 +53,7 @@
                     <div class="layui-btn-group">
                         <div class="layui-btn-group">
                             <a href="{:url('edit?id='.$vo['id'])}" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon"></i></a>
-                            <a data-href="{:url('del?table=表名(无表前缀)&id='.$vo['id'])}" class="layui-btn layui-btn-primary layui-btn-small j-tr-del"><i class="layui-icon"></i></a>
+                            <a href="#" class="layui-btn layui-btn-primary layui-btn-small delete" idd="{$vo['id']}"><i class="layui-icon"></i></a>
                         </div>
                     </div>
                 </td>
@@ -62,5 +65,24 @@
     </div>
 </form>
 {$data->render()}
-
 {include file="admin@block/layui" /}
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(".delete").click(function(){
+        if(confirm('是否确认？')){
+            var id=$(this).attr('idd');
+            $.get('delete/id/'+id,function (a) {
+                if(a.info==10000){
+                    alert('删除成功');
+                    location.href='index';
+                }
+                if(a.info==20000){
+                    layer.open({
+                        title: '提示',
+                        content: '删除失败'
+                    });
+                }
+            })
+        }
+    })
+</script>

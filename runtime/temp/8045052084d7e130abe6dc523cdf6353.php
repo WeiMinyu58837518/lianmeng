@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:49:"D:\Aliases\lianmeng/app/admin\view\game\index.php";i:1515563900;s:45:"D:\Aliases\lianmeng\app\admin\view\layout.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\header.php";i:1515477828;s:50:"D:\Aliases\lianmeng\app\admin\view\block\layui.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\footer.php";i:1515477847;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:49:"D:\Aliases\lianmeng/app/admin\view\game\index.php";i:1515567773;s:45:"D:\Aliases\lianmeng\app\admin\view\layout.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\header.php";i:1515477828;s:50:"D:\Aliases\lianmeng\app\admin\view\block\layui.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\footer.php";i:1515477847;}*/ ?>
 <?php if(input('param.hisi_iframe') || cookie('hisi_iframe')): ?>
 <!DOCTYPE html>
 <html>
@@ -139,16 +139,15 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             </colgroup>
             <thead>
             <tr>
-                <th>id</th>
+                <th>序号</th>
                 <th>比赛种类</th>
                 <th>操作</th>
             </tr>
             </thead>
             <tbody>
-
-            <?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+            <?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): $ke = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($ke % 2 );++$ke;?>
             <tr>
-                <td><?php echo $vo['id']; ?></td>
+                <td><?php echo $ke; ?></td>
                 <td><?php echo $vo['name']; ?></td>
                 <td>
                     <div class="layui-btn-group">
@@ -231,16 +230,15 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             </colgroup>
             <thead>
             <tr>
-                <th>id</th>
+                <th>序号</th>
                 <th>比赛种类</th>
                 <th>操作</th>
             </tr>
             </thead>
             <tbody>
-
-            <?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+            <?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): $ke = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($ke % 2 );++$ke;?>
             <tr>
-                <td><?php echo $vo['id']; ?></td>
+                <td><?php echo $ke; ?></td>
                 <td><?php echo $vo['name']; ?></td>
                 <td>
                     <div class="layui-btn-group">
@@ -306,16 +304,15 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             </colgroup>
             <thead>
             <tr>
-                <th>id</th>
+                <th>序号</th>
                 <th>比赛种类</th>
                 <th>操作</th>
             </tr>
             </thead>
             <tbody>
-
-            <?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+            <?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): $ke = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($ke % 2 );++$ke;?>
             <tr>
-                <td><?php echo $vo['id']; ?></td>
+                <td><?php echo $ke; ?></td>
                 <td><?php echo $vo['name']; ?></td>
                 <td>
                     <div class="layui-btn-group">
@@ -391,16 +388,15 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             </colgroup>
             <thead>
             <tr>
-                <th>id</th>
+                <th>序号</th>
                 <th>比赛种类</th>
                 <th>操作</th>
             </tr>
             </thead>
             <tbody>
-
-            <?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+            <?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): $ke = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($ke % 2 );++$ke;?>
             <tr>
-                <td><?php echo $vo['id']; ?></td>
+                <td><?php echo $ke; ?></td>
                 <td><?php echo $vo['name']; ?></td>
                 <td>
                     <div class="layui-btn-group">

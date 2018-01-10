@@ -18,7 +18,7 @@ class Doghouse extends Admin
 {
     //犬舍列表
     public function index(){
-        $data=Db::name('doghouse')->paginate(10);
+        $data=Db::name('doghouse')->order('id','desc')->paginate(10);
         $this->assign('data',$data);
         return $this->fetch();
     }
@@ -91,8 +91,19 @@ class Doghouse extends Admin
             }else{
                 $this->success('修改成功','index');
             }
-
-
         }
+    }
+    public function delete(){
+        $id=Request::instance()->param('id');
+        $res=Db::name('doghouse')->where('id',$id)->delete();
+        Db::name('doghouse_content')->where('doghouse_id',$id)->delete();
+        if($res){
+            return ['info'=>10000];
+        }else{
+            return ['info'=>20000];
+        }
+    }
+    public function deleteall(){
+
     }
 }
