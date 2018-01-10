@@ -40,21 +40,18 @@
 </form>
 
 {include file="admin@block/layui" /}
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script src="/static/js/jquery.js"></script>
 <script>
     $('.delete').click(function(){
         if(confirm('确定删除')){
             var id=$(this).attr('idd');
             $.get('delete/id/'+id,function(a){
                 if(a.info==10000){
-                    alert('删除成功');
+                    layer.msg('删除成功')
                     location.href='index'
                 }
                 if(a.info==20000){
-                    layer.open({
-                        title: '提示',
-                        content: '删除失败'
-                    });
+                    layer.msg('删除失败')
                 }
             })
         }

@@ -1,4 +1,3 @@
-<script src="https://cdn.bootcss.com/jquery/2.2.3/jquery.js"></script>
 <div class="page-toolbar">
         <div class="layui-btn-group fl">
             <a href="{:url('add')}" class="layui-btn layui-btn-primary"><i class="aicon ai-tianjia"></i>添加</a>
@@ -48,25 +47,23 @@
 </form>
 
 {include file="admin@block/layui" /}
+<script src="/static/js/jquery.js"></script>
 <script>
     $(".delete").click(function(){
         if(confirm('确定删除？')){
             var id=$(this).attr('idd');
             $.get('delete/id/'+id,function(a){
                 if(a.info==10000){
-                    alert('删除成功');
-                    location.href='index'
+                    layer.msg('删除成功');
+                    location.href='index';
                 }
                 if(a.info==20000){
-                    layer.open({
-                        title: '提示',
-                        content: '删除失败'
-                    });
+                    layer.msg('删除失败');
                 }
                 if(a.info==30000){
-                    layer.open({
-                        title: '提示',
-                        content: a.error
+                    layer.msg(a.error, {
+                        offset: 't',
+                        anim: 6
                     });
                 }
             })

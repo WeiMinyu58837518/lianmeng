@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:49:"D:\Aliases\lianmeng/app/admin\view\type\index.php";i:1515548812;s:45:"D:\Aliases\lianmeng\app\admin\view\layout.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\header.php";i:1515477828;s:50:"D:\Aliases\lianmeng\app\admin\view\block\layui.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\footer.php";i:1515477847;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:49:"D:\Aliases\lianmeng/app/admin\view\type\index.php";i:1515580649;s:45:"D:\Aliases\lianmeng\app\admin\view\layout.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\header.php";i:1515477828;s:50:"D:\Aliases\lianmeng\app\admin\view\block\layui.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\footer.php";i:1515477847;}*/ ?>
 <?php if(input('param.hisi_iframe') || cookie('hisi_iframe')): ?>
 <!DOCTYPE html>
 <html>
@@ -124,8 +124,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             </ul>
             <div class="layui-tab-content page-tab-content">
                 <div class="layui-tab-item layui-show">
-                    <script src="https://cdn.bootcss.com/jquery/2.2.3/jquery.js"></script>
-<div class="page-toolbar">
+                    <div class="page-toolbar">
         <div class="layui-btn-group fl">
             <a href="<?php echo url('add'); ?>" class="layui-btn layui-btn-primary"><i class="aicon ai-tianjia"></i>添加</a>
         </div>
@@ -181,25 +180,23 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         version: '<?php echo config("hisiphp.version"); ?>'
     }).use('global');
 </script>
+<script src="/static/js/jquery.js"></script>
 <script>
     $(".delete").click(function(){
         if(confirm('确定删除？')){
             var id=$(this).attr('idd');
             $.get('delete/id/'+id,function(a){
                 if(a.info==10000){
-                    alert('删除成功');
-                    location.href='index'
+                    layer.msg('删除成功');
+                    location.href='index';
                 }
                 if(a.info==20000){
-                    layer.open({
-                        title: '提示',
-                        content: '删除失败'
-                    });
+                    layer.msg('删除失败');
                 }
                 if(a.info==30000){
-                    layer.open({
-                        title: '提示',
-                        content: a.error
+                    layer.msg(a.error, {
+                        offset: 't',
+                        anim: 6
                     });
                 }
             })
@@ -229,8 +226,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
                 </div>
             </ul>
             <div class="layui-tab-content page-tab-content">
-                <script src="https://cdn.bootcss.com/jquery/2.2.3/jquery.js"></script>
-<div class="page-toolbar">
+                <div class="page-toolbar">
         <div class="layui-btn-group fl">
             <a href="<?php echo url('add'); ?>" class="layui-btn layui-btn-primary"><i class="aicon ai-tianjia"></i>添加</a>
         </div>
@@ -286,25 +282,23 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         version: '<?php echo config("hisiphp.version"); ?>'
     }).use('global');
 </script>
+<script src="/static/js/jquery.js"></script>
 <script>
     $(".delete").click(function(){
         if(confirm('确定删除？')){
             var id=$(this).attr('idd');
             $.get('delete/id/'+id,function(a){
                 if(a.info==10000){
-                    alert('删除成功');
-                    location.href='index'
+                    layer.msg('删除成功');
+                    location.href='index';
                 }
                 if(a.info==20000){
-                    layer.open({
-                        title: '提示',
-                        content: '删除失败'
-                    });
+                    layer.msg('删除失败');
                 }
                 if(a.info==30000){
-                    layer.open({
-                        title: '提示',
-                        content: a.error
+                    layer.msg(a.error, {
+                        offset: 't',
+                        anim: 6
                     });
                 }
             })
@@ -317,8 +311,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         </div>
     <?php break; case "3": ?>
     
-        <script src="https://cdn.bootcss.com/jquery/2.2.3/jquery.js"></script>
-<div class="page-toolbar">
+        <div class="page-toolbar">
         <div class="layui-btn-group fl">
             <a href="<?php echo url('add'); ?>" class="layui-btn layui-btn-primary"><i class="aicon ai-tianjia"></i>添加</a>
         </div>
@@ -374,25 +367,23 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         version: '<?php echo config("hisiphp.version"); ?>'
     }).use('global');
 </script>
+<script src="/static/js/jquery.js"></script>
 <script>
     $(".delete").click(function(){
         if(confirm('确定删除？')){
             var id=$(this).attr('idd');
             $.get('delete/id/'+id,function(a){
                 if(a.info==10000){
-                    alert('删除成功');
-                    location.href='index'
+                    layer.msg('删除成功');
+                    location.href='index';
                 }
                 if(a.info==20000){
-                    layer.open({
-                        title: '提示',
-                        content: '删除失败'
-                    });
+                    layer.msg('删除失败');
                 }
                 if(a.info==30000){
-                    layer.open({
-                        title: '提示',
-                        content: a.error
+                    layer.msg(a.error, {
+                        offset: 't',
+                        anim: 6
                     });
                 }
             })
@@ -415,8 +406,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             </ul>
             <div class="layui-tab-content page-tab-content">
                 <div class="layui-tab-item layui-show">
-                    <script src="https://cdn.bootcss.com/jquery/2.2.3/jquery.js"></script>
-<div class="page-toolbar">
+                    <div class="page-toolbar">
         <div class="layui-btn-group fl">
             <a href="<?php echo url('add'); ?>" class="layui-btn layui-btn-primary"><i class="aicon ai-tianjia"></i>添加</a>
         </div>
@@ -472,25 +462,23 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         version: '<?php echo config("hisiphp.version"); ?>'
     }).use('global');
 </script>
+<script src="/static/js/jquery.js"></script>
 <script>
     $(".delete").click(function(){
         if(confirm('确定删除？')){
             var id=$(this).attr('idd');
             $.get('delete/id/'+id,function(a){
                 if(a.info==10000){
-                    alert('删除成功');
-                    location.href='index'
+                    layer.msg('删除成功');
+                    location.href='index';
                 }
                 if(a.info==20000){
-                    layer.open({
-                        title: '提示',
-                        content: '删除失败'
-                    });
+                    layer.msg('删除失败');
                 }
                 if(a.info==30000){
-                    layer.open({
-                        title: '提示',
-                        content: a.error
+                    layer.msg(a.error, {
+                        offset: 't',
+                        anim: 6
                     });
                 }
             })

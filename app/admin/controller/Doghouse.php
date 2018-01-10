@@ -19,9 +19,25 @@ class Doghouse extends Admin
 {
     //犬舍列表
     public function index(){
-        $data=Db::name('doghouse')->order('id','desc')->paginate(10);
-        $this->assign('data',$data);
-        return $this->fetch();
+        if(Request::instance()->param('q')){
+            $se='%';
+            $se.=Request::instance()->param('q');
+            $se.='%';
+            $data=Db::name('doghouse')->where('title','like',$se)->order('id','desc')->select();
+            if(empty($data)){
+                $this->error('查无此文');
+            }
+            $this->assign('data',$data);
+            $this->assign('list','');
+            return $this->fetch();
+        }else{
+            $data=Db::name('doghouse')->order('id','desc')->paginate(10);
+            $page=$data->render();
+            $this->assign('data',$data);
+            $this->assign('list',$page);
+            return $this->fetch();
+        }
+
     }
     public function add(){
         if(Request::instance()->isGet()){
@@ -111,5 +127,8 @@ class Doghouse extends Admin
             Db::name('doghouse_content')->where('doghouse_id',$v)->delete();
         }
         $this->success('删除成功','index');
+    }
+    public function search(){
+        echo Request::instance()->param('q');
     }
 }

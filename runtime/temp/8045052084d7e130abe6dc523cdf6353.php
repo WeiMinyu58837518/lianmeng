@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:49:"D:\Aliases\lianmeng/app/admin\view\game\index.php";i:1515567773;s:45:"D:\Aliases\lianmeng\app\admin\view\layout.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\header.php";i:1515477828;s:50:"D:\Aliases\lianmeng\app\admin\view\block\layui.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\footer.php";i:1515477847;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:49:"D:\Aliases\lianmeng/app/admin\view\game\index.php";i:1515580496;s:45:"D:\Aliases\lianmeng\app\admin\view\layout.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\header.php";i:1515477828;s:50:"D:\Aliases\lianmeng\app\admin\view\block\layui.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\footer.php";i:1515477847;}*/ ?>
 <?php if(input('param.hisi_iframe') || cookie('hisi_iframe')): ?>
 <!DOCTYPE html>
 <html>
@@ -173,21 +173,18 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         version: '<?php echo config("hisiphp.version"); ?>'
     }).use('global');
 </script>
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script src="/static/js/jquery.js"></script>
 <script>
     $('.delete').click(function(){
         if(confirm('确定删除')){
             var id=$(this).attr('idd');
             $.get('delete/id/'+id,function(a){
                 if(a.info==10000){
-                    alert('删除成功');
+                    layer.msg('删除成功')
                     location.href='index'
                 }
                 if(a.info==20000){
-                    layer.open({
-                        title: '提示',
-                        content: '删除失败'
-                    });
+                    layer.msg('删除失败')
                 }
             })
         }
@@ -264,21 +261,18 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         version: '<?php echo config("hisiphp.version"); ?>'
     }).use('global');
 </script>
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script src="/static/js/jquery.js"></script>
 <script>
     $('.delete').click(function(){
         if(confirm('确定删除')){
             var id=$(this).attr('idd');
             $.get('delete/id/'+id,function(a){
                 if(a.info==10000){
-                    alert('删除成功');
+                    layer.msg('删除成功')
                     location.href='index'
                 }
                 if(a.info==20000){
-                    layer.open({
-                        title: '提示',
-                        content: '删除失败'
-                    });
+                    layer.msg('删除失败')
                 }
             })
         }
@@ -338,21 +332,18 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         version: '<?php echo config("hisiphp.version"); ?>'
     }).use('global');
 </script>
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script src="/static/js/jquery.js"></script>
 <script>
     $('.delete').click(function(){
         if(confirm('确定删除')){
             var id=$(this).attr('idd');
             $.get('delete/id/'+id,function(a){
                 if(a.info==10000){
-                    alert('删除成功');
+                    layer.msg('删除成功')
                     location.href='index'
                 }
                 if(a.info==20000){
-                    layer.open({
-                        title: '提示',
-                        content: '删除失败'
-                    });
+                    layer.msg('删除失败')
                 }
             })
         }
@@ -422,21 +413,18 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         version: '<?php echo config("hisiphp.version"); ?>'
     }).use('global');
 </script>
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script src="/static/js/jquery.js"></script>
 <script>
     $('.delete').click(function(){
         if(confirm('确定删除')){
             var id=$(this).attr('idd');
             $.get('delete/id/'+id,function(a){
                 if(a.info==10000){
-                    alert('删除成功');
+                    layer.msg('删除成功')
                     location.href='index'
                 }
                 if(a.info==20000){
-                    layer.open({
-                        title: '提示',
-                        content: '删除失败'
-                    });
+                    layer.msg('删除失败')
                 }
             })
         }

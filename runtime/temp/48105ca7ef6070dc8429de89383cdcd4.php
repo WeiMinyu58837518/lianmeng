@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:53:"D:\Aliases\lianmeng/app/admin\view\doghouse\index.php";i:1515573209;s:45:"D:\Aliases\lianmeng\app\admin\view\layout.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\header.php";i:1515477828;s:50:"D:\Aliases\lianmeng\app\admin\view\block\layui.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\footer.php";i:1515477847;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:53:"D:\Aliases\lianmeng/app/admin\view\doghouse\index.php";i:1515580664;s:45:"D:\Aliases\lianmeng\app\admin\view\layout.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\header.php";i:1515477828;s:50:"D:\Aliases\lianmeng\app\admin\view\block\layui.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\footer.php";i:1515477847;}*/ ?>
 <?php if(input('param.hisi_iframe') || cookie('hisi_iframe')): ?>
 <!DOCTYPE html>
 <html>
@@ -133,7 +133,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
 
         </div>
         <div class="page-filter fr">
-            <form class="layui-form layui-form-pane" action="<?php echo url(); ?>" method="get">
+            <form class="layui-form layui-form-pane" action="<?php echo url(''); ?>" method="get">
                 <div class="layui-form-item">
                     <label class="layui-form-label">搜索</label>
                     <div class="layui-input-inline">
@@ -190,7 +190,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         </table>
     </div>
 </form>
-<?php echo $data->render(); ?>
+<?php echo $list; ?>
 <script src="/static/admin/js/layui/layui.js?v=<?php echo config('hisiphp.version'); ?>"></script>
 <script>
     var ADMIN_PATH = "<?php echo $_SERVER['SCRIPT_NAME']; ?>", LAYUI_OFFSET = 0;
@@ -206,24 +206,15 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             var id=$(this).attr('idd');
             $.get('delete/id/'+id,function (a) {
                 if(a.info==10000){
-                    alert('删除成功');
+                    layer.msg('删除成功')
                     location.href='index';
                 }
                 if(a.info==20000){
-                    layer.open({
-                        title: '提示',
-                        content: '删除失败'
-                    });
+                    layer.msg('删除失败')
                 }
             })
         }
     })
-</script>
-
-<script>
-//    $("#deleteall").click(function(){
-//        alert(1)
-//    })
 </script>
                 </div>
             </div>
@@ -255,7 +246,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
 
         </div>
         <div class="page-filter fr">
-            <form class="layui-form layui-form-pane" action="<?php echo url(); ?>" method="get">
+            <form class="layui-form layui-form-pane" action="<?php echo url(''); ?>" method="get">
                 <div class="layui-form-item">
                     <label class="layui-form-label">搜索</label>
                     <div class="layui-input-inline">
@@ -312,7 +303,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         </table>
     </div>
 </form>
-<?php echo $data->render(); ?>
+<?php echo $list; ?>
 <script src="/static/admin/js/layui/layui.js?v=<?php echo config('hisiphp.version'); ?>"></script>
 <script>
     var ADMIN_PATH = "<?php echo $_SERVER['SCRIPT_NAME']; ?>", LAYUI_OFFSET = 0;
@@ -328,24 +319,15 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             var id=$(this).attr('idd');
             $.get('delete/id/'+id,function (a) {
                 if(a.info==10000){
-                    alert('删除成功');
+                    layer.msg('删除成功')
                     location.href='index';
                 }
                 if(a.info==20000){
-                    layer.open({
-                        title: '提示',
-                        content: '删除失败'
-                    });
+                    layer.msg('删除失败')
                 }
             })
         }
     })
-</script>
-
-<script>
-//    $("#deleteall").click(function(){
-//        alert(1)
-//    })
 </script>
             </div>
         </div>
@@ -360,7 +342,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
 
         </div>
         <div class="page-filter fr">
-            <form class="layui-form layui-form-pane" action="<?php echo url(); ?>" method="get">
+            <form class="layui-form layui-form-pane" action="<?php echo url(''); ?>" method="get">
                 <div class="layui-form-item">
                     <label class="layui-form-label">搜索</label>
                     <div class="layui-input-inline">
@@ -417,7 +399,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         </table>
     </div>
 </form>
-<?php echo $data->render(); ?>
+<?php echo $list; ?>
 <script src="/static/admin/js/layui/layui.js?v=<?php echo config('hisiphp.version'); ?>"></script>
 <script>
     var ADMIN_PATH = "<?php echo $_SERVER['SCRIPT_NAME']; ?>", LAYUI_OFFSET = 0;
@@ -433,24 +415,15 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             var id=$(this).attr('idd');
             $.get('delete/id/'+id,function (a) {
                 if(a.info==10000){
-                    alert('删除成功');
+                    layer.msg('删除成功')
                     location.href='index';
                 }
                 if(a.info==20000){
-                    layer.open({
-                        title: '提示',
-                        content: '删除失败'
-                    });
+                    layer.msg('删除失败')
                 }
             })
         }
     })
-</script>
-
-<script>
-//    $("#deleteall").click(function(){
-//        alert(1)
-//    })
 </script>
     <?php break; default: ?>
     
@@ -475,7 +448,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
 
         </div>
         <div class="page-filter fr">
-            <form class="layui-form layui-form-pane" action="<?php echo url(); ?>" method="get">
+            <form class="layui-form layui-form-pane" action="<?php echo url(''); ?>" method="get">
                 <div class="layui-form-item">
                     <label class="layui-form-label">搜索</label>
                     <div class="layui-input-inline">
@@ -532,7 +505,7 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         </table>
     </div>
 </form>
-<?php echo $data->render(); ?>
+<?php echo $list; ?>
 <script src="/static/admin/js/layui/layui.js?v=<?php echo config('hisiphp.version'); ?>"></script>
 <script>
     var ADMIN_PATH = "<?php echo $_SERVER['SCRIPT_NAME']; ?>", LAYUI_OFFSET = 0;
@@ -548,24 +521,15 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             var id=$(this).attr('idd');
             $.get('delete/id/'+id,function (a) {
                 if(a.info==10000){
-                    alert('删除成功');
+                    layer.msg('删除成功')
                     location.href='index';
                 }
                 if(a.info==20000){
-                    layer.open({
-                        title: '提示',
-                        content: '删除失败'
-                    });
+                    layer.msg('删除失败')
                 }
             })
         }
     })
-</script>
-
-<script>
-//    $("#deleteall").click(function(){
-//        alert(1)
-//    })
 </script>
                 </div>
             </div>

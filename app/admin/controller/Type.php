@@ -81,7 +81,7 @@ class Type extends Admin
             $data['name']=Request::instance()->param('name');
             $res=Db::name('type')->where('id',$id)->update($data);
             if($res){
-                $this->success('修改成功');
+                $this->success('修改成功','index');
             }else{
                 $this->error('修改失败');
             }

@@ -7,7 +7,7 @@
 
         </div>
         <div class="page-filter fr">
-            <form class="layui-form layui-form-pane" action="{:url()}" method="get">
+            <form class="layui-form layui-form-pane" action="{:url('')}" method="get">
                 <div class="layui-form-item">
                     <label class="layui-form-label">搜索</label>
                     <div class="layui-input-inline">
@@ -64,7 +64,7 @@
         </table>
     </div>
 </form>
-{$data->render()}
+{$list}
 {include file="admin@block/layui" /}
 <script src="/static/js/jquery.js"></script>
 <script>
@@ -73,22 +73,13 @@
             var id=$(this).attr('idd');
             $.get('delete/id/'+id,function (a) {
                 if(a.info==10000){
-                    alert('删除成功');
+                    layer.msg('删除成功')
                     location.href='index';
                 }
                 if(a.info==20000){
-                    layer.open({
-                        title: '提示',
-                        content: '删除失败'
-                    });
+                    layer.msg('删除失败')
                 }
             })
         }
     })
-</script>
-
-<script>
-//    $("#deleteall").click(function(){
-//        alert(1)
-//    })
 </script>

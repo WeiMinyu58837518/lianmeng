@@ -324,7 +324,9 @@ layui.define(['element', 'form'], function(exports) {
                     var query = that.parents('form').serialize();
                     var query1=[];
                     for(var i=0;i<$('tbody').find('tr').length;i++){
-                        query1.push($('tbody').find('tr').eq(i).find('div').siblings('input').val());
+                        if ($('tbody').find('tr').eq(i).find('div').hasClass('layui-form-checked')){
+                            query1.push($('tbody').find('tr').eq(i).find('div').siblings('input').val());
+                        }
                     }
                     var a={
                         query:query,
