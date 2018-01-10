@@ -85,7 +85,6 @@ class Type extends Admin
             }else{
                 $this->error('修改失败');
             }
-
         }
     }
     //删除分类

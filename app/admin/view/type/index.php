@@ -7,20 +7,16 @@
     <div class="layui-form">
         <table class="layui-table mt10" lay-even="" lay-skin="row">
             <colgroup>
-                <col width="50">
                 <col width="150">
-                <col width="200">
                 <col width="300">
-                <col width="100">
-                <col width="80">
-                <col>
+                <col width="250">
+                <col width="300">
             </colgroup>
             <thead>
             <tr>
                 <th>id</th>
                 <th>分类名称</th>
                 <th>父类id</th>
-                <th>状态</th>
                 <th>操作</th>
             </tr>
             </thead>
@@ -31,10 +27,10 @@
                 <td>{$vo['id']}</td>
                 <td>{$vo['level']}{$vo['name']}</td>
                 <td>{$vo['pid']}</td>
-                <td>
-
-                    <input type="checkbox" name="status" {if condition="$vo['status'] eq 1"}checked=""{/if} value="{$vo['status']}" lay-skin="switch" lay-filter="switchStatus" lay-text="正常|关闭" data-href="{:url('status?table=type&ids='.$vo['id'])}">
-                </td>
+<!--                <td>-->
+<!---->
+<!--                    <input type="checkbox" name="status" {if condition="$vo['status'] eq 1"}checked=""{/if} value="{$vo['status']}" lay-skin="switch" lay-filter="switchStatus" lay-text="正常|关闭" data-href="{:url('status?table=type&ids='.$vo['id'])}">-->
+<!--                </td>-->
                 <td>
                     <div class="layui-btn-group">
                         <div class="layui-btn-group">
@@ -62,10 +58,16 @@
                     location.href='index'
                 }
                 if(a.info==20000){
-                    alert('删除失败');
+                    layer.open({
+                        title: '提示',
+                        content: '删除失败'
+                    });
                 }
                 if(a.info==30000){
-                    alert(a.error);
+                    layer.open({
+                        title: '提示',
+                        content: a.error
+                    });
                 }
             })
         }

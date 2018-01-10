@@ -110,7 +110,6 @@ class User extends Admin
             }
             return $this->success('添加成功');
         }
-
         $tab_data = [];
         $tab_data['menu'] = [
             ['title' => '添加用户'],
