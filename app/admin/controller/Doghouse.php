@@ -60,7 +60,7 @@ class Doghouse extends Admin
     public function edit(){
         if(Request::instance()->isGet()){
             $id=Request::instance()->param('id');
-            $data=Db::name('doghouse')->alias('d1')->join('lm_doghouse_content d2','d1.id=d2.doghouse_id')->find();
+            $data=Db::name('doghouse')->alias('d1')->where('id',$id)->join('lm_doghouse_content d2','d1.id=d2.doghouse_id','LEFT')->find();
             $this->assign('data',$data);
             return $this->fetch();
         }
@@ -84,20 +84,15 @@ class Doghouse extends Admin
                 $this->error($validate->getError());
             }
             //验证结束入库
-            $res=true;
-            $ress=Db::name('doghouse')->where('id',$data['idd'])->update(['title'=>$data['title'],'author'=>$data['author'],'img'=>$data['img'],'ptime'=>date('Y-m-d H:i:s',time())]);
-            if(!$ress){
-                $res=false;
-            }
-            $resss=Db::name('doghouse_content')->where('doghouse_id',$data['idd'])->update(['content'=>$data['content']]);
-            if(!$resss){
-                $res=false;
-            }
-            if($res){
-                $this->success('添加成功');
+            $res1=Db::name('doghouse')->where('id',$data['idd'])->update(['title'=>$data['title'],'author'=>$data['author'],'img'=>$data['img'],'ptime'=>date('Y-m-d H:i:s',time())]);
+            $res2=Db::name('doghouse_content')->where('doghouse_id',$data['idd'])->update(['content'=>$data['content']]);
+            if(!$res1 && !$res2){
+                $this->error('修改失败');
             }else{
-                $this->error('添加失败');
+                $this->success('修改成功','index');
             }
+
+
         }
     }
 }
