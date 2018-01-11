@@ -209,4 +209,15 @@ class Content extends Admin
         }
     }
 
+    public function deleteall(){
+        $ids=Request::instance()->param();
+        $res=Db::name('article')->delete($ids['delete']);
+        Db::name('article_content')->delete($ids['delete']);
+        if($res){
+            $this->success('删除成功','index');
+        }else{
+            $this->error('删除失败');
+        }
+    }
+
 }

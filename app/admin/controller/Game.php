@@ -73,10 +73,10 @@ class Game extends Admin
             //完成入库
             $res1=Db::name('gametype')->where('id',$data['id'])->update(['name'=>$data['name']]);
             $res2=Db::name('game')->where('type_id',$data['id'])->update(['content'=>$data['content']]);
-            if(!$res1 && !$res2){
-                $this->error('修改失败');
-            }else{
+            if($res1 || $res2){
                 $this->success('修改成功','index');
+            }else{
+                $this->error('修改失败');
             }
         }
     }

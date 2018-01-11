@@ -135,7 +135,4 @@ class Doghouse extends Admin
         }
 
     }
-    public function search(){
-        echo Request::instance()->param('q');
-    }
 }

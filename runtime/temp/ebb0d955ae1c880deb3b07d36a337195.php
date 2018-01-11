@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:54:"D:\Aliases\lianmeng/app/admin\view\content\article.php";i:1515658027;s:45:"D:\Aliases\lianmeng\app\admin\view\layout.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\header.php";i:1515477828;s:50:"D:\Aliases\lianmeng\app\admin\view\block\layui.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\footer.php";i:1515477847;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:51:"D:\Aliases\lianmeng/app/admin\view\member\level.php";i:1515225914;s:45:"D:\Aliases\lianmeng\app\admin\view\layout.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\header.php";i:1515477828;s:50:"D:\Aliases\lianmeng\app\admin\view\block\layui.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\footer.php";i:1515477847;}*/ ?>
 <?php if(input('param.hisi_iframe') || cookie('hisi_iframe')): ?>
 <!DOCTYPE html>
 <html>
@@ -125,70 +125,60 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             <div class="layui-tab-content page-tab-content">
                 <div class="layui-tab-item layui-show">
                     <form class="page-list-form">
-    <div class="page-toolbar">
-        <div class="layui-btn-group fl">
-            <a href="<?php echo url('deleteall'); ?>" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="aicon ai-jinyong"></i>删除</a>
-        </div>
-        <div class="page-filter fr">
-            <form class="layui-form layui-form-pane" action="<?php echo url(); ?>" method="get">
-                <div class="layui-form-item">
-                    <label class="layui-form-label">搜索</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="q" lay-verify="required" placeholder="请输入关键词搜索" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-            </form>
-        </div>
+<div class="page-toolbar">
+    <div class="layui-btn-group fl">
+        <a href="<?php echo url('addLevel'); ?>" class="layui-btn layui-btn-primary"><i class="aicon ai-tianjia"></i>添加</a>
+        <a data-href="<?php echo url('status?val=1'); ?>" class="layui-btn layui-btn-primary j-page-btns"><i class="aicon ai-qiyong"></i>启用</a>
+        <a data-href="<?php echo url('status?val=0'); ?>" class="layui-btn layui-btn-primary j-page-btns"><i class="aicon ai-jinyong1"></i>禁用</a>
+        <a data-href="<?php echo url('delLevel'); ?>" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="aicon ai-jinyong"></i>删除</a>
     </div>
-    <div class="layui-form">
-        <table class="layui-table mt10" lay-even="" lay-skin="row">
-            <colgroup>
-                <col width="50">
-                <col width="150">
-                <col width="100">
-                <col width="100">
-                <col width="100">
-                <col width="150">
-                <col width="80">
-            </colgroup>
-            <thead>
+</div>
+<div class="layui-form">
+    <table class="layui-table mt10" lay-even="" lay-skin="row">
+        <colgroup>
+            <col width="50">
+        </colgroup>
+        <thead>
             <tr>
-                <th><input type="checkbox" lay-skin="primary" lay-filter="allChoose"></th>
-                <th>题目</th>
-                <th>作者</th>
+                <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
+                <th>等级名称</th>
+                <th>等级简介</th>
+                <th>折扣%</th>
+                <th>最小经验值</th>
+                <th>最大经验值</th>
                 <th>创建时间</th>
-                <th>修改时间</th>
-                <th>所属分类</th>
+                <th>状态</th>
+                <th>默认</th>
                 <th>操作</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            <?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+            </tr> 
+        </thead>
+        <tbody>
+            <?php if(is_array($data_list) || $data_list instanceof \think\Collection || $data_list instanceof \think\Paginator): $i = 0; $__LIST__ = $data_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?>
             <tr>
-                <td><input type="checkbox" class="layui-checkbox checkbox-ids" name="ids[]" value="<?php echo $vo['id']; ?>" lay-skin="primary"></td>
-                <td><?php echo $vo['title']; ?></td>
-                <td><?php echo $vo['author']; ?></td>
-                <td><?php echo $vo['ctime']; ?></td>
-                <td><?php echo $vo['ptime']; ?></td>
-                <td><?php echo $list; ?></td>
+                <td><input type="checkbox" name="ids[]" value="<?php echo $v['id']; ?>" class="layui-checkbox checkbox-ids" lay-skin="primary"></td>
+                <td><?php echo $v['name']; ?></td>
+                <td><?php echo $v['intro']; ?></td>
+                <td><?php echo $v['discount']; ?></td>
+                <td><?php echo $v['min_exper']; ?></td>
+                <td><?php echo $v['max_exper']; ?></td>
+                <td><?php echo $v['ctime']; ?></td>
+                <td><input type="checkbox" name="status" <?php if($v['status'] == 1): ?>checked=""<?php endif; ?> value="<?php echo $v['status']; ?>" lay-skin="switch" lay-filter="switchStatus" lay-text="正常|关闭" data-href="<?php echo url('status?table=admin_member_level&ids='.$v['id']); ?>"></td>
+                <td><input type="checkbox" name="default" <?php if($v['default'] == 1): ?>checked=""<?php endif; ?> value="<?php echo $v['default']; ?>" lay-skin="switch" lay-filter="switchStatus" lay-text="正常|关闭" data-href="<?php echo url('setDefault?id='.$v['id']); ?>"></td>
                 <td>
                     <div class="layui-btn-group">
                         <div class="layui-btn-group">
-                            <a href="<?php echo url('edit?id='.$vo['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon"></i></a>
-                            <a href="#" class="layui-btn layui-btn-primary layui-btn-small delete" idd="<?php echo $vo['id']; ?>"><i class="layui-icon"></i></a>
+                        <a href="<?php echo url('editLevel?id='.$v['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon">&#xe642;</i></a>
+                        <a data-href="<?php echo url('delLevel?ids='.$v['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small j-tr-del"><i class="layui-icon">&#xe640;</i></a>
                         </div>
                     </div>
                 </td>
             </tr>
             <?php endforeach; endif; else: echo "" ;endif; ?>
-
-            </tbody>
-        </table>
-    </div>
+        </tbody>
+    </table>
+    <?php echo $pages; ?>
+</div>
 </form>
-<?php echo $page; ?>
-
 <script src="/static/admin/js/layui/layui.js?v=<?php echo config('hisiphp.version'); ?>"></script>
 <script>
     var ADMIN_PATH = "<?php echo $_SERVER['SCRIPT_NAME']; ?>", LAYUI_OFFSET = 0;
@@ -196,24 +186,6 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         base: '/static/admin/js/',
         version: '<?php echo config("hisiphp.version"); ?>'
     }).use('global');
-</script>
-
-<script src="/static/js/jquery.js"></script>
-<script>
-    $(".delete").click(function(){
-        if(confirm('是否确认？')){
-            var id=$(this).attr('idd');
-            $.get('<?php echo url("admin/content/delete"); ?>'+'?id='+id,function (a) {
-                if(a.info==10000){
-                    layer.msg('删除成功')
-                    history.go(0);
-                }
-                if(a.info==20000){
-                    layer.msg('删除失败')
-                }
-            })
-        }
-    })
 </script>
                 </div>
             </div>
@@ -237,70 +209,60 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             </ul>
             <div class="layui-tab-content page-tab-content">
                 <form class="page-list-form">
-    <div class="page-toolbar">
-        <div class="layui-btn-group fl">
-            <a href="<?php echo url('deleteall'); ?>" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="aicon ai-jinyong"></i>删除</a>
-        </div>
-        <div class="page-filter fr">
-            <form class="layui-form layui-form-pane" action="<?php echo url(); ?>" method="get">
-                <div class="layui-form-item">
-                    <label class="layui-form-label">搜索</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="q" lay-verify="required" placeholder="请输入关键词搜索" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-            </form>
-        </div>
+<div class="page-toolbar">
+    <div class="layui-btn-group fl">
+        <a href="<?php echo url('addLevel'); ?>" class="layui-btn layui-btn-primary"><i class="aicon ai-tianjia"></i>添加</a>
+        <a data-href="<?php echo url('status?val=1'); ?>" class="layui-btn layui-btn-primary j-page-btns"><i class="aicon ai-qiyong"></i>启用</a>
+        <a data-href="<?php echo url('status?val=0'); ?>" class="layui-btn layui-btn-primary j-page-btns"><i class="aicon ai-jinyong1"></i>禁用</a>
+        <a data-href="<?php echo url('delLevel'); ?>" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="aicon ai-jinyong"></i>删除</a>
     </div>
-    <div class="layui-form">
-        <table class="layui-table mt10" lay-even="" lay-skin="row">
-            <colgroup>
-                <col width="50">
-                <col width="150">
-                <col width="100">
-                <col width="100">
-                <col width="100">
-                <col width="150">
-                <col width="80">
-            </colgroup>
-            <thead>
+</div>
+<div class="layui-form">
+    <table class="layui-table mt10" lay-even="" lay-skin="row">
+        <colgroup>
+            <col width="50">
+        </colgroup>
+        <thead>
             <tr>
-                <th><input type="checkbox" lay-skin="primary" lay-filter="allChoose"></th>
-                <th>题目</th>
-                <th>作者</th>
+                <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
+                <th>等级名称</th>
+                <th>等级简介</th>
+                <th>折扣%</th>
+                <th>最小经验值</th>
+                <th>最大经验值</th>
                 <th>创建时间</th>
-                <th>修改时间</th>
-                <th>所属分类</th>
+                <th>状态</th>
+                <th>默认</th>
                 <th>操作</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            <?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+            </tr> 
+        </thead>
+        <tbody>
+            <?php if(is_array($data_list) || $data_list instanceof \think\Collection || $data_list instanceof \think\Paginator): $i = 0; $__LIST__ = $data_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?>
             <tr>
-                <td><input type="checkbox" class="layui-checkbox checkbox-ids" name="ids[]" value="<?php echo $vo['id']; ?>" lay-skin="primary"></td>
-                <td><?php echo $vo['title']; ?></td>
-                <td><?php echo $vo['author']; ?></td>
-                <td><?php echo $vo['ctime']; ?></td>
-                <td><?php echo $vo['ptime']; ?></td>
-                <td><?php echo $list; ?></td>
+                <td><input type="checkbox" name="ids[]" value="<?php echo $v['id']; ?>" class="layui-checkbox checkbox-ids" lay-skin="primary"></td>
+                <td><?php echo $v['name']; ?></td>
+                <td><?php echo $v['intro']; ?></td>
+                <td><?php echo $v['discount']; ?></td>
+                <td><?php echo $v['min_exper']; ?></td>
+                <td><?php echo $v['max_exper']; ?></td>
+                <td><?php echo $v['ctime']; ?></td>
+                <td><input type="checkbox" name="status" <?php if($v['status'] == 1): ?>checked=""<?php endif; ?> value="<?php echo $v['status']; ?>" lay-skin="switch" lay-filter="switchStatus" lay-text="正常|关闭" data-href="<?php echo url('status?table=admin_member_level&ids='.$v['id']); ?>"></td>
+                <td><input type="checkbox" name="default" <?php if($v['default'] == 1): ?>checked=""<?php endif; ?> value="<?php echo $v['default']; ?>" lay-skin="switch" lay-filter="switchStatus" lay-text="正常|关闭" data-href="<?php echo url('setDefault?id='.$v['id']); ?>"></td>
                 <td>
                     <div class="layui-btn-group">
                         <div class="layui-btn-group">
-                            <a href="<?php echo url('edit?id='.$vo['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon"></i></a>
-                            <a href="#" class="layui-btn layui-btn-primary layui-btn-small delete" idd="<?php echo $vo['id']; ?>"><i class="layui-icon"></i></a>
+                        <a href="<?php echo url('editLevel?id='.$v['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon">&#xe642;</i></a>
+                        <a data-href="<?php echo url('delLevel?ids='.$v['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small j-tr-del"><i class="layui-icon">&#xe640;</i></a>
                         </div>
                     </div>
                 </td>
             </tr>
             <?php endforeach; endif; else: echo "" ;endif; ?>
-
-            </tbody>
-        </table>
-    </div>
+        </tbody>
+    </table>
+    <?php echo $pages; ?>
+</div>
 </form>
-<?php echo $page; ?>
-
 <script src="/static/admin/js/layui/layui.js?v=<?php echo config('hisiphp.version'); ?>"></script>
 <script>
     var ADMIN_PATH = "<?php echo $_SERVER['SCRIPT_NAME']; ?>", LAYUI_OFFSET = 0;
@@ -308,94 +270,66 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         base: '/static/admin/js/',
         version: '<?php echo config("hisiphp.version"); ?>'
     }).use('global');
-</script>
-
-<script src="/static/js/jquery.js"></script>
-<script>
-    $(".delete").click(function(){
-        if(confirm('是否确认？')){
-            var id=$(this).attr('idd');
-            $.get('<?php echo url("admin/content/delete"); ?>'+'?id='+id,function (a) {
-                if(a.info==10000){
-                    layer.msg('删除成功')
-                    history.go(0);
-                }
-                if(a.info==20000){
-                    layer.msg('删除失败')
-                }
-            })
-        }
-    })
 </script>
             </div>
         </div>
     <?php break; case "3": ?>
     
         <form class="page-list-form">
-    <div class="page-toolbar">
-        <div class="layui-btn-group fl">
-            <a href="<?php echo url('deleteall'); ?>" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="aicon ai-jinyong"></i>删除</a>
-        </div>
-        <div class="page-filter fr">
-            <form class="layui-form layui-form-pane" action="<?php echo url(); ?>" method="get">
-                <div class="layui-form-item">
-                    <label class="layui-form-label">搜索</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="q" lay-verify="required" placeholder="请输入关键词搜索" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-            </form>
-        </div>
+<div class="page-toolbar">
+    <div class="layui-btn-group fl">
+        <a href="<?php echo url('addLevel'); ?>" class="layui-btn layui-btn-primary"><i class="aicon ai-tianjia"></i>添加</a>
+        <a data-href="<?php echo url('status?val=1'); ?>" class="layui-btn layui-btn-primary j-page-btns"><i class="aicon ai-qiyong"></i>启用</a>
+        <a data-href="<?php echo url('status?val=0'); ?>" class="layui-btn layui-btn-primary j-page-btns"><i class="aicon ai-jinyong1"></i>禁用</a>
+        <a data-href="<?php echo url('delLevel'); ?>" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="aicon ai-jinyong"></i>删除</a>
     </div>
-    <div class="layui-form">
-        <table class="layui-table mt10" lay-even="" lay-skin="row">
-            <colgroup>
-                <col width="50">
-                <col width="150">
-                <col width="100">
-                <col width="100">
-                <col width="100">
-                <col width="150">
-                <col width="80">
-            </colgroup>
-            <thead>
+</div>
+<div class="layui-form">
+    <table class="layui-table mt10" lay-even="" lay-skin="row">
+        <colgroup>
+            <col width="50">
+        </colgroup>
+        <thead>
             <tr>
-                <th><input type="checkbox" lay-skin="primary" lay-filter="allChoose"></th>
-                <th>题目</th>
-                <th>作者</th>
+                <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
+                <th>等级名称</th>
+                <th>等级简介</th>
+                <th>折扣%</th>
+                <th>最小经验值</th>
+                <th>最大经验值</th>
                 <th>创建时间</th>
-                <th>修改时间</th>
-                <th>所属分类</th>
+                <th>状态</th>
+                <th>默认</th>
                 <th>操作</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            <?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+            </tr> 
+        </thead>
+        <tbody>
+            <?php if(is_array($data_list) || $data_list instanceof \think\Collection || $data_list instanceof \think\Paginator): $i = 0; $__LIST__ = $data_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?>
             <tr>
-                <td><input type="checkbox" class="layui-checkbox checkbox-ids" name="ids[]" value="<?php echo $vo['id']; ?>" lay-skin="primary"></td>
-                <td><?php echo $vo['title']; ?></td>
-                <td><?php echo $vo['author']; ?></td>
-                <td><?php echo $vo['ctime']; ?></td>
-                <td><?php echo $vo['ptime']; ?></td>
-                <td><?php echo $list; ?></td>
+                <td><input type="checkbox" name="ids[]" value="<?php echo $v['id']; ?>" class="layui-checkbox checkbox-ids" lay-skin="primary"></td>
+                <td><?php echo $v['name']; ?></td>
+                <td><?php echo $v['intro']; ?></td>
+                <td><?php echo $v['discount']; ?></td>
+                <td><?php echo $v['min_exper']; ?></td>
+                <td><?php echo $v['max_exper']; ?></td>
+                <td><?php echo $v['ctime']; ?></td>
+                <td><input type="checkbox" name="status" <?php if($v['status'] == 1): ?>checked=""<?php endif; ?> value="<?php echo $v['status']; ?>" lay-skin="switch" lay-filter="switchStatus" lay-text="正常|关闭" data-href="<?php echo url('status?table=admin_member_level&ids='.$v['id']); ?>"></td>
+                <td><input type="checkbox" name="default" <?php if($v['default'] == 1): ?>checked=""<?php endif; ?> value="<?php echo $v['default']; ?>" lay-skin="switch" lay-filter="switchStatus" lay-text="正常|关闭" data-href="<?php echo url('setDefault?id='.$v['id']); ?>"></td>
                 <td>
                     <div class="layui-btn-group">
                         <div class="layui-btn-group">
-                            <a href="<?php echo url('edit?id='.$vo['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon"></i></a>
-                            <a href="#" class="layui-btn layui-btn-primary layui-btn-small delete" idd="<?php echo $vo['id']; ?>"><i class="layui-icon"></i></a>
+                        <a href="<?php echo url('editLevel?id='.$v['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon">&#xe642;</i></a>
+                        <a data-href="<?php echo url('delLevel?ids='.$v['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small j-tr-del"><i class="layui-icon">&#xe640;</i></a>
                         </div>
                     </div>
                 </td>
             </tr>
             <?php endforeach; endif; else: echo "" ;endif; ?>
-
-            </tbody>
-        </table>
-    </div>
+        </tbody>
+    </table>
+    <?php echo $pages; ?>
+</div>
 </form>
-<?php echo $page; ?>
-
 <script src="/static/admin/js/layui/layui.js?v=<?php echo config('hisiphp.version'); ?>"></script>
 <script>
     var ADMIN_PATH = "<?php echo $_SERVER['SCRIPT_NAME']; ?>", LAYUI_OFFSET = 0;
@@ -403,24 +337,6 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         base: '/static/admin/js/',
         version: '<?php echo config("hisiphp.version"); ?>'
     }).use('global');
-</script>
-
-<script src="/static/js/jquery.js"></script>
-<script>
-    $(".delete").click(function(){
-        if(confirm('是否确认？')){
-            var id=$(this).attr('idd');
-            $.get('<?php echo url("admin/content/delete"); ?>'+'?id='+id,function (a) {
-                if(a.info==10000){
-                    layer.msg('删除成功')
-                    history.go(0);
-                }
-                if(a.info==20000){
-                    layer.msg('删除失败')
-                }
-            })
-        }
-    })
 </script>
     <?php break; default: ?>
     
@@ -437,70 +353,60 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             <div class="layui-tab-content page-tab-content">
                 <div class="layui-tab-item layui-show">
                     <form class="page-list-form">
-    <div class="page-toolbar">
-        <div class="layui-btn-group fl">
-            <a href="<?php echo url('deleteall'); ?>" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="aicon ai-jinyong"></i>删除</a>
-        </div>
-        <div class="page-filter fr">
-            <form class="layui-form layui-form-pane" action="<?php echo url(); ?>" method="get">
-                <div class="layui-form-item">
-                    <label class="layui-form-label">搜索</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="q" lay-verify="required" placeholder="请输入关键词搜索" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-            </form>
-        </div>
+<div class="page-toolbar">
+    <div class="layui-btn-group fl">
+        <a href="<?php echo url('addLevel'); ?>" class="layui-btn layui-btn-primary"><i class="aicon ai-tianjia"></i>添加</a>
+        <a data-href="<?php echo url('status?val=1'); ?>" class="layui-btn layui-btn-primary j-page-btns"><i class="aicon ai-qiyong"></i>启用</a>
+        <a data-href="<?php echo url('status?val=0'); ?>" class="layui-btn layui-btn-primary j-page-btns"><i class="aicon ai-jinyong1"></i>禁用</a>
+        <a data-href="<?php echo url('delLevel'); ?>" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="aicon ai-jinyong"></i>删除</a>
     </div>
-    <div class="layui-form">
-        <table class="layui-table mt10" lay-even="" lay-skin="row">
-            <colgroup>
-                <col width="50">
-                <col width="150">
-                <col width="100">
-                <col width="100">
-                <col width="100">
-                <col width="150">
-                <col width="80">
-            </colgroup>
-            <thead>
+</div>
+<div class="layui-form">
+    <table class="layui-table mt10" lay-even="" lay-skin="row">
+        <colgroup>
+            <col width="50">
+        </colgroup>
+        <thead>
             <tr>
-                <th><input type="checkbox" lay-skin="primary" lay-filter="allChoose"></th>
-                <th>题目</th>
-                <th>作者</th>
+                <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
+                <th>等级名称</th>
+                <th>等级简介</th>
+                <th>折扣%</th>
+                <th>最小经验值</th>
+                <th>最大经验值</th>
                 <th>创建时间</th>
-                <th>修改时间</th>
-                <th>所属分类</th>
+                <th>状态</th>
+                <th>默认</th>
                 <th>操作</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            <?php if(is_array($data) || $data instanceof \think\Collection || $data instanceof \think\Paginator): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+            </tr> 
+        </thead>
+        <tbody>
+            <?php if(is_array($data_list) || $data_list instanceof \think\Collection || $data_list instanceof \think\Paginator): $i = 0; $__LIST__ = $data_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?>
             <tr>
-                <td><input type="checkbox" class="layui-checkbox checkbox-ids" name="ids[]" value="<?php echo $vo['id']; ?>" lay-skin="primary"></td>
-                <td><?php echo $vo['title']; ?></td>
-                <td><?php echo $vo['author']; ?></td>
-                <td><?php echo $vo['ctime']; ?></td>
-                <td><?php echo $vo['ptime']; ?></td>
-                <td><?php echo $list; ?></td>
+                <td><input type="checkbox" name="ids[]" value="<?php echo $v['id']; ?>" class="layui-checkbox checkbox-ids" lay-skin="primary"></td>
+                <td><?php echo $v['name']; ?></td>
+                <td><?php echo $v['intro']; ?></td>
+                <td><?php echo $v['discount']; ?></td>
+                <td><?php echo $v['min_exper']; ?></td>
+                <td><?php echo $v['max_exper']; ?></td>
+                <td><?php echo $v['ctime']; ?></td>
+                <td><input type="checkbox" name="status" <?php if($v['status'] == 1): ?>checked=""<?php endif; ?> value="<?php echo $v['status']; ?>" lay-skin="switch" lay-filter="switchStatus" lay-text="正常|关闭" data-href="<?php echo url('status?table=admin_member_level&ids='.$v['id']); ?>"></td>
+                <td><input type="checkbox" name="default" <?php if($v['default'] == 1): ?>checked=""<?php endif; ?> value="<?php echo $v['default']; ?>" lay-skin="switch" lay-filter="switchStatus" lay-text="正常|关闭" data-href="<?php echo url('setDefault?id='.$v['id']); ?>"></td>
                 <td>
                     <div class="layui-btn-group">
                         <div class="layui-btn-group">
-                            <a href="<?php echo url('edit?id='.$vo['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon"></i></a>
-                            <a href="#" class="layui-btn layui-btn-primary layui-btn-small delete" idd="<?php echo $vo['id']; ?>"><i class="layui-icon"></i></a>
+                        <a href="<?php echo url('editLevel?id='.$v['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon">&#xe642;</i></a>
+                        <a data-href="<?php echo url('delLevel?ids='.$v['id']); ?>" class="layui-btn layui-btn-primary layui-btn-small j-tr-del"><i class="layui-icon">&#xe640;</i></a>
                         </div>
                     </div>
                 </td>
             </tr>
             <?php endforeach; endif; else: echo "" ;endif; ?>
-
-            </tbody>
-        </table>
-    </div>
+        </tbody>
+    </table>
+    <?php echo $pages; ?>
+</div>
 </form>
-<?php echo $page; ?>
-
 <script src="/static/admin/js/layui/layui.js?v=<?php echo config('hisiphp.version'); ?>"></script>
 <script>
     var ADMIN_PATH = "<?php echo $_SERVER['SCRIPT_NAME']; ?>", LAYUI_OFFSET = 0;
@@ -508,24 +414,6 @@ $ca = strtolower(request()->controller().'/'.request()->action());
         base: '/static/admin/js/',
         version: '<?php echo config("hisiphp.version"); ?>'
     }).use('global');
-</script>
-
-<script src="/static/js/jquery.js"></script>
-<script>
-    $(".delete").click(function(){
-        if(confirm('是否确认？')){
-            var id=$(this).attr('idd');
-            $.get('<?php echo url("admin/content/delete"); ?>'+'?id='+id,function (a) {
-                if(a.info==10000){
-                    layer.msg('删除成功')
-                    history.go(0);
-                }
-                if(a.info==20000){
-                    layer.msg('删除失败')
-                }
-            })
-        }
-    })
 </script>
                 </div>
             </div>

@@ -1,51 +1,57 @@
 <form class="layui-form layui-form-pane" action="{:url('edit')}" id="editForm" method="post">
     <fieldset class="layui-elem-field layui-field-title">
-        <legend>内容修改</legend>
+        <legend>商户信息修改</legend>
     </fieldset>
     <div class="layui-form-item">
-        <label class="layui-form-label">内容分组</label>
+        <label class="layui-form-label">商户名称</label>
         <div class="layui-input-inline">
-            <select name="type_id" class="field-role_id" type="select">
-                <option value="0">请选择分组</option>
-                {volist name='type' id='vo'}
-                <option value="{$vo['id']}"
-                {$vo['id']==$data['type_id'] ? 'selected' : ''}
-                >{$vo['level']}{$vo['name']}</option>
-                {/volist}
-            </select>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">标题</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input field-username" value="{$data['title']}" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题内容">
+            <input type="text" class="layui-input field-username" value="{$data['name']}" name="name" lay-verify="title" autocomplete="off" placeholder="请输入商户名称">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">作者</label>
+        <label class="layui-form-label">地址</label>
         <div class="layui-input-inline">
-            <input type="text" class="layui-input field-username" value="{$data['author']}" name="author" lay-verify="title" autocomplete="off" placeholder="请输入作者名称">
-        </div>
-        <div class="layui-form-mid layui-word-aux"></div>
-    </div>
-    <!--图片-->
-    <div class="layui-form-item">
-        <label class="layui-form-label">封面图上传</label>
-        <div class="layui-input-inline upload">
-            <button type="button" name="upload" class="layui-btn layui-btn-primary layui-upload" lay-type="image" lay-data="{accept:'image'}">请上传图片</button>
-            <input type="hidden" class="upload-input" name="img" value="{$data['img']}">
-            <img src="{$data['img']}" style="border-radius:5px;border:1px solid #ccc" width="36" height="36">
+            <input type="text" class="layui-input field-username" value="{$data['address']}" name="address" lay-verify="title" autocomplete="off" placeholder="请输入商户地址">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">正文</label>
-        <div class="layui-input-block">
-            <textarea id="UEditor2" name="content">{$data['content']}</textarea>
+        <label class="layui-form-label">联系邮箱</label>
+        <div class="layui-input-inline">
+            <input type="text" class="layui-input field-email" value="{$data['email']}" name="email" lay-verify="title" autocomplete="off" placeholder="请输入邮箱地址">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系手机</label>
+        <div class="layui-input-inline">
+            <input type="text" class="layui-input field-mobile" value="{$data['phone']}" name="phone" lay-verify="title" autocomplete="off" placeholder="请输入手机号码">
         </div>
     </div>
     <input type="hidden" name="id" class="" value="{$data['id']}">
+    <!--图片-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">商户logo</label>
+        <div class="layui-input-inline upload">
+            <button type="button" name="upload" class="layui-btn layui-btn-primary layui-upload" lay-type="image" lay-data="{accept:'image'}">请上传图片</button>
+            <input type="hidden" class="upload-input" name="logo" value="{$data['logo']}">
+            <img src="{$data['logo']}" style="border-radius:5px;border:1px solid #ccc" width="36" height="36">
+        </div>
+        <div class="layui-form-mid layui-word-aux"></div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">登陆账户</label>
+        <div class="layui-input-inline">
+            <input type="text" class="layui-input field-username" value="{$data['zhanghu']}" name="zhanghu" lay-verify="title" autocomplete="off" placeholder="请输入登陆账户">
+        </div>
+        <div class="layui-form-mid layui-word-aux"></div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">登陆密码</label>
+        <div class="layui-input-inline">
+            <input type="password" class="layui-input" name="password" lay-verify="password" autocomplete="off" placeholder="如不修改密码请不要填写">
+        </div>
+    </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button type="submit" class="layui-btn" lay-submit="" lay-filter="formSubmit">提交</button>

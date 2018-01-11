@@ -34,3 +34,19 @@
 [ 2018-01-11T14:22:41+08:00 ] 0.0.0.0 GET /admin/content/index.html
 [ info ] www.lianmeng.com/admin/content/index.html [运行时间：0.085542s][吞吐率：11.69req/s] [内存消耗：2,438.21kb] [文件加载：66]
 [ error ] [0]语法解析错误: syntax error, unexpected '}'[D:\Aliases\lianmeng\app\admin\controller\Content.php:204]
+---------------------------------------------------------------
+[ 2018-01-11T17:23:37+08:00 ] 0.0.0.0 POST /admin/merchant/add.html
+[ info ] www.lianmeng.com/admin/merchant/add.html [运行时间：0.251002s][吞吐率：3.98req/s] [内存消耗：2,757.89kb] [文件加载：79]
+[ error ] [0]致命错误: Class 'app\admin\controller\Validate' not found[D:\Aliases\lianmeng\app\admin\controller\Merchant.php:57]
+---------------------------------------------------------------
+[ 2018-01-11T17:23:47+08:00 ] 0.0.0.0 POST /admin/merchant/add.html
+[ info ] www.lianmeng.com/admin/merchant/add.html [运行时间：0.146939s][吞吐率：6.81req/s] [内存消耗：2,759.10kb] [文件加载：79]
+[ error ] [0]致命错误: Class 'app\admin\controller\Validate' not found[D:\Aliases\lianmeng\app\admin\controller\Merchant.php:57]
+---------------------------------------------------------------
+[ 2018-01-11T17:55:59+08:00 ] 0.0.0.0 GET /admin/merchant/edit/id/2.html
+[ info ] www.lianmeng.com/admin/merchant/edit/id/2.html [运行时间：0.092678s][吞吐率：10.79req/s] [内存消耗：2,438.95kb] [文件加载：66]
+[ error ] [0]语法解析错误: syntax error, unexpected '}'[D:\Aliases\lianmeng\app\admin\controller\Merchant.php:82]
+---------------------------------------------------------------
+[ 2018-01-11T17:58:30+08:00 ] 0.0.0.0 GET /admin/merchant/index.html
+[ info ] www.lianmeng.com/admin/merchant/index.html [运行时间：0.094381s][吞吐率：10.60req/s] [内存消耗：2,438.23kb] [文件加载：66]
+[ error ] [0]语法解析错误: syntax error, unexpected '}'[D:\Aliases\lianmeng\app\admin\controller\Merchant.php:83]

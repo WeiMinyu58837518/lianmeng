@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:51:"D:\Aliases\lianmeng/app/admin\view\content\edit.php";i:1515665453;s:45:"D:\Aliases\lianmeng\app\admin\view\layout.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\header.php";i:1515477828;s:50:"D:\Aliases\lianmeng\app\admin\view\block\layui.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\footer.php";i:1515477847;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:5:{s:51:"D:\Aliases\lianmeng/app/admin\view\merchant\add.php";i:1515661253;s:45:"D:\Aliases\lianmeng\app\admin\view\layout.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\header.php";i:1515477828;s:50:"D:\Aliases\lianmeng\app\admin\view\block\layui.php";i:1515225914;s:51:"D:\Aliases\lianmeng\app\admin\view\block\footer.php";i:1515477847;}*/ ?>
 <?php if(input('param.hisi_iframe') || cookie('hisi_iframe')): ?>
 <!DOCTYPE html>
 <html>
@@ -124,54 +124,59 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             </ul>
             <div class="layui-tab-content page-tab-content">
                 <div class="layui-tab-item layui-show">
-                    <form class="layui-form layui-form-pane" action="<?php echo url('edit'); ?>" id="editForm" method="post">
+                    <form class="layui-form layui-form-pane" action="<?php echo url('add'); ?>" id="editForm" method="post">
     <fieldset class="layui-elem-field layui-field-title">
-        <legend>内容修改</legend>
+        <legend>商户入驻</legend>
     </fieldset>
     <div class="layui-form-item">
-        <label class="layui-form-label">内容分组</label>
+        <label class="layui-form-label">商户名称</label>
         <div class="layui-input-inline">
-            <select name="type_id" class="field-role_id" type="select">
-                <option value="0">请选择分组</option>
-                <?php if(is_array($type) || $type instanceof \think\Collection || $type instanceof \think\Paginator): $i = 0; $__LIST__ = $type;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                <option value="<?php echo $vo['id']; ?>"
-                <?php echo $vo['id']==$data['type_id']?'selected' : ''; ?>
-                ><?php echo $vo['level']; ?><?php echo $vo['name']; ?></option>
-                <?php endforeach; endif; else: echo "" ;endif; ?>
-            </select>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">标题</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input field-username" value="<?php echo $data['title']; ?>" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题内容">
+            <input type="text" class="layui-input field-username" name="name" lay-verify="title" autocomplete="off" placeholder="请输入商户名称">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">作者</label>
+        <label class="layui-form-label">地址</label>
         <div class="layui-input-inline">
-            <input type="text" class="layui-input field-username" value="<?php echo $data['author']; ?>" name="author" lay-verify="title" autocomplete="off" placeholder="请输入作者名称">
+            <input type="text" class="layui-input field-username" name="address" lay-verify="title" autocomplete="off" placeholder="请输入商户地址">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系邮箱</label>
+        <div class="layui-input-inline">
+            <input type="text" class="layui-input field-email" name="email" lay-verify="title" autocomplete="off" placeholder="请输入邮箱地址">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系手机</label>
+        <div class="layui-input-inline">
+            <input type="text" class="layui-input field-mobile" name="phone" lay-verify="title" autocomplete="off" placeholder="请输入手机号码">
+        </div>
     </div>
     <!--图片-->
     <div class="layui-form-item">
-        <label class="layui-form-label">封面图上传</label>
+        <label class="layui-form-label">商户logo</label>
         <div class="layui-input-inline upload">
             <button type="button" name="upload" class="layui-btn layui-btn-primary layui-upload" lay-type="image" lay-data="{accept:'image'}">请上传图片</button>
-            <input type="hidden" class="upload-input" name="img" value="<?php echo $data['img']; ?>">
-            <img src="<?php echo $data['img']; ?>" style="border-radius:5px;border:1px solid #ccc" width="36" height="36">
+            <input type="hidden" class="upload-input" name="logo" value="">
+            <img src="" style="display:none;border-radius:5px;border:1px solid #ccc" width="36" height="36">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">正文</label>
-        <div class="layui-input-block">
-            <textarea id="UEditor2" name="content"><?php echo $data['content']; ?></textarea>
+        <label class="layui-form-label">登陆账户</label>
+        <div class="layui-input-inline">
+            <input type="text" class="layui-input field-username" name="zhanghu" lay-verify="title" autocomplete="off" placeholder="请输入登陆账户">
+        </div>
+        <div class="layui-form-mid layui-word-aux"></div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">登陆密码</label>
+        <div class="layui-input-inline">
+            <input type="password" class="layui-input" name="password" lay-verify="password" autocomplete="off" placeholder="******">
         </div>
     </div>
-    <input type="hidden" name="id" class="" value="<?php echo $data['id']; ?>">
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button type="submit" class="layui-btn" lay-submit="" lay-filter="formSubmit">提交</button>
@@ -243,6 +248,8 @@ $ca = strtolower(request()->controller().'/'.request()->action());
 <?php echo editor(['UEditor1', 'UEditor2'], 'ueditor'); ?>
 <?php echo editor(['ckeditor', 'ckeditor2'], 'ckeditor'); ?>
 <script src="/static/admin/js/footer.js"></script>
+
+
                 </div>
             </div>
         </div>
@@ -264,54 +271,59 @@ $ca = strtolower(request()->controller().'/'.request()->action());
                 </div>
             </ul>
             <div class="layui-tab-content page-tab-content">
-                <form class="layui-form layui-form-pane" action="<?php echo url('edit'); ?>" id="editForm" method="post">
+                <form class="layui-form layui-form-pane" action="<?php echo url('add'); ?>" id="editForm" method="post">
     <fieldset class="layui-elem-field layui-field-title">
-        <legend>内容修改</legend>
+        <legend>商户入驻</legend>
     </fieldset>
     <div class="layui-form-item">
-        <label class="layui-form-label">内容分组</label>
+        <label class="layui-form-label">商户名称</label>
         <div class="layui-input-inline">
-            <select name="type_id" class="field-role_id" type="select">
-                <option value="0">请选择分组</option>
-                <?php if(is_array($type) || $type instanceof \think\Collection || $type instanceof \think\Paginator): $i = 0; $__LIST__ = $type;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                <option value="<?php echo $vo['id']; ?>"
-                <?php echo $vo['id']==$data['type_id']?'selected' : ''; ?>
-                ><?php echo $vo['level']; ?><?php echo $vo['name']; ?></option>
-                <?php endforeach; endif; else: echo "" ;endif; ?>
-            </select>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">标题</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input field-username" value="<?php echo $data['title']; ?>" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题内容">
+            <input type="text" class="layui-input field-username" name="name" lay-verify="title" autocomplete="off" placeholder="请输入商户名称">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">作者</label>
+        <label class="layui-form-label">地址</label>
         <div class="layui-input-inline">
-            <input type="text" class="layui-input field-username" value="<?php echo $data['author']; ?>" name="author" lay-verify="title" autocomplete="off" placeholder="请输入作者名称">
+            <input type="text" class="layui-input field-username" name="address" lay-verify="title" autocomplete="off" placeholder="请输入商户地址">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系邮箱</label>
+        <div class="layui-input-inline">
+            <input type="text" class="layui-input field-email" name="email" lay-verify="title" autocomplete="off" placeholder="请输入邮箱地址">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系手机</label>
+        <div class="layui-input-inline">
+            <input type="text" class="layui-input field-mobile" name="phone" lay-verify="title" autocomplete="off" placeholder="请输入手机号码">
+        </div>
     </div>
     <!--图片-->
     <div class="layui-form-item">
-        <label class="layui-form-label">封面图上传</label>
+        <label class="layui-form-label">商户logo</label>
         <div class="layui-input-inline upload">
             <button type="button" name="upload" class="layui-btn layui-btn-primary layui-upload" lay-type="image" lay-data="{accept:'image'}">请上传图片</button>
-            <input type="hidden" class="upload-input" name="img" value="<?php echo $data['img']; ?>">
-            <img src="<?php echo $data['img']; ?>" style="border-radius:5px;border:1px solid #ccc" width="36" height="36">
+            <input type="hidden" class="upload-input" name="logo" value="">
+            <img src="" style="display:none;border-radius:5px;border:1px solid #ccc" width="36" height="36">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">正文</label>
-        <div class="layui-input-block">
-            <textarea id="UEditor2" name="content"><?php echo $data['content']; ?></textarea>
+        <label class="layui-form-label">登陆账户</label>
+        <div class="layui-input-inline">
+            <input type="text" class="layui-input field-username" name="zhanghu" lay-verify="title" autocomplete="off" placeholder="请输入登陆账户">
+        </div>
+        <div class="layui-form-mid layui-word-aux"></div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">登陆密码</label>
+        <div class="layui-input-inline">
+            <input type="password" class="layui-input" name="password" lay-verify="password" autocomplete="off" placeholder="******">
         </div>
     </div>
-    <input type="hidden" name="id" class="" value="<?php echo $data['id']; ?>">
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button type="submit" class="layui-btn" lay-submit="" lay-filter="formSubmit">提交</button>
@@ -383,58 +395,65 @@ $ca = strtolower(request()->controller().'/'.request()->action());
 <?php echo editor(['UEditor1', 'UEditor2'], 'ueditor'); ?>
 <?php echo editor(['ckeditor', 'ckeditor2'], 'ckeditor'); ?>
 <script src="/static/admin/js/footer.js"></script>
+
+
             </div>
         </div>
     <?php break; case "3": ?>
     
-        <form class="layui-form layui-form-pane" action="<?php echo url('edit'); ?>" id="editForm" method="post">
+        <form class="layui-form layui-form-pane" action="<?php echo url('add'); ?>" id="editForm" method="post">
     <fieldset class="layui-elem-field layui-field-title">
-        <legend>内容修改</legend>
+        <legend>商户入驻</legend>
     </fieldset>
     <div class="layui-form-item">
-        <label class="layui-form-label">内容分组</label>
+        <label class="layui-form-label">商户名称</label>
         <div class="layui-input-inline">
-            <select name="type_id" class="field-role_id" type="select">
-                <option value="0">请选择分组</option>
-                <?php if(is_array($type) || $type instanceof \think\Collection || $type instanceof \think\Paginator): $i = 0; $__LIST__ = $type;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                <option value="<?php echo $vo['id']; ?>"
-                <?php echo $vo['id']==$data['type_id']?'selected' : ''; ?>
-                ><?php echo $vo['level']; ?><?php echo $vo['name']; ?></option>
-                <?php endforeach; endif; else: echo "" ;endif; ?>
-            </select>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">标题</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input field-username" value="<?php echo $data['title']; ?>" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题内容">
+            <input type="text" class="layui-input field-username" name="name" lay-verify="title" autocomplete="off" placeholder="请输入商户名称">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">作者</label>
+        <label class="layui-form-label">地址</label>
         <div class="layui-input-inline">
-            <input type="text" class="layui-input field-username" value="<?php echo $data['author']; ?>" name="author" lay-verify="title" autocomplete="off" placeholder="请输入作者名称">
+            <input type="text" class="layui-input field-username" name="address" lay-verify="title" autocomplete="off" placeholder="请输入商户地址">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系邮箱</label>
+        <div class="layui-input-inline">
+            <input type="text" class="layui-input field-email" name="email" lay-verify="title" autocomplete="off" placeholder="请输入邮箱地址">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系手机</label>
+        <div class="layui-input-inline">
+            <input type="text" class="layui-input field-mobile" name="phone" lay-verify="title" autocomplete="off" placeholder="请输入手机号码">
+        </div>
     </div>
     <!--图片-->
     <div class="layui-form-item">
-        <label class="layui-form-label">封面图上传</label>
+        <label class="layui-form-label">商户logo</label>
         <div class="layui-input-inline upload">
             <button type="button" name="upload" class="layui-btn layui-btn-primary layui-upload" lay-type="image" lay-data="{accept:'image'}">请上传图片</button>
-            <input type="hidden" class="upload-input" name="img" value="<?php echo $data['img']; ?>">
-            <img src="<?php echo $data['img']; ?>" style="border-radius:5px;border:1px solid #ccc" width="36" height="36">
+            <input type="hidden" class="upload-input" name="logo" value="">
+            <img src="" style="display:none;border-radius:5px;border:1px solid #ccc" width="36" height="36">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">正文</label>
-        <div class="layui-input-block">
-            <textarea id="UEditor2" name="content"><?php echo $data['content']; ?></textarea>
+        <label class="layui-form-label">登陆账户</label>
+        <div class="layui-input-inline">
+            <input type="text" class="layui-input field-username" name="zhanghu" lay-verify="title" autocomplete="off" placeholder="请输入登陆账户">
+        </div>
+        <div class="layui-form-mid layui-word-aux"></div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">登陆密码</label>
+        <div class="layui-input-inline">
+            <input type="password" class="layui-input" name="password" lay-verify="password" autocomplete="off" placeholder="******">
         </div>
     </div>
-    <input type="hidden" name="id" class="" value="<?php echo $data['id']; ?>">
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button type="submit" class="layui-btn" lay-submit="" lay-filter="formSubmit">提交</button>
@@ -506,6 +525,8 @@ $ca = strtolower(request()->controller().'/'.request()->action());
 <?php echo editor(['UEditor1', 'UEditor2'], 'ueditor'); ?>
 <?php echo editor(['ckeditor', 'ckeditor2'], 'ckeditor'); ?>
 <script src="/static/admin/js/footer.js"></script>
+
+
     <?php break; default: ?>
     
         <div class="layui-tab layui-tab-card">
@@ -520,54 +541,59 @@ $ca = strtolower(request()->controller().'/'.request()->action());
             </ul>
             <div class="layui-tab-content page-tab-content">
                 <div class="layui-tab-item layui-show">
-                    <form class="layui-form layui-form-pane" action="<?php echo url('edit'); ?>" id="editForm" method="post">
+                    <form class="layui-form layui-form-pane" action="<?php echo url('add'); ?>" id="editForm" method="post">
     <fieldset class="layui-elem-field layui-field-title">
-        <legend>内容修改</legend>
+        <legend>商户入驻</legend>
     </fieldset>
     <div class="layui-form-item">
-        <label class="layui-form-label">内容分组</label>
+        <label class="layui-form-label">商户名称</label>
         <div class="layui-input-inline">
-            <select name="type_id" class="field-role_id" type="select">
-                <option value="0">请选择分组</option>
-                <?php if(is_array($type) || $type instanceof \think\Collection || $type instanceof \think\Paginator): $i = 0; $__LIST__ = $type;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                <option value="<?php echo $vo['id']; ?>"
-                <?php echo $vo['id']==$data['type_id']?'selected' : ''; ?>
-                ><?php echo $vo['level']; ?><?php echo $vo['name']; ?></option>
-                <?php endforeach; endif; else: echo "" ;endif; ?>
-            </select>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">标题</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input field-username" value="<?php echo $data['title']; ?>" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题内容">
+            <input type="text" class="layui-input field-username" name="name" lay-verify="title" autocomplete="off" placeholder="请输入商户名称">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">作者</label>
+        <label class="layui-form-label">地址</label>
         <div class="layui-input-inline">
-            <input type="text" class="layui-input field-username" value="<?php echo $data['author']; ?>" name="author" lay-verify="title" autocomplete="off" placeholder="请输入作者名称">
+            <input type="text" class="layui-input field-username" name="address" lay-verify="title" autocomplete="off" placeholder="请输入商户地址">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系邮箱</label>
+        <div class="layui-input-inline">
+            <input type="text" class="layui-input field-email" name="email" lay-verify="title" autocomplete="off" placeholder="请输入邮箱地址">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系手机</label>
+        <div class="layui-input-inline">
+            <input type="text" class="layui-input field-mobile" name="phone" lay-verify="title" autocomplete="off" placeholder="请输入手机号码">
+        </div>
     </div>
     <!--图片-->
     <div class="layui-form-item">
-        <label class="layui-form-label">封面图上传</label>
+        <label class="layui-form-label">商户logo</label>
         <div class="layui-input-inline upload">
             <button type="button" name="upload" class="layui-btn layui-btn-primary layui-upload" lay-type="image" lay-data="{accept:'image'}">请上传图片</button>
-            <input type="hidden" class="upload-input" name="img" value="<?php echo $data['img']; ?>">
-            <img src="<?php echo $data['img']; ?>" style="border-radius:5px;border:1px solid #ccc" width="36" height="36">
+            <input type="hidden" class="upload-input" name="logo" value="">
+            <img src="" style="display:none;border-radius:5px;border:1px solid #ccc" width="36" height="36">
         </div>
         <div class="layui-form-mid layui-word-aux"></div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">正文</label>
-        <div class="layui-input-block">
-            <textarea id="UEditor2" name="content"><?php echo $data['content']; ?></textarea>
+        <label class="layui-form-label">登陆账户</label>
+        <div class="layui-input-inline">
+            <input type="text" class="layui-input field-username" name="zhanghu" lay-verify="title" autocomplete="off" placeholder="请输入登陆账户">
+        </div>
+        <div class="layui-form-mid layui-word-aux"></div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">登陆密码</label>
+        <div class="layui-input-inline">
+            <input type="password" class="layui-input" name="password" lay-verify="password" autocomplete="off" placeholder="******">
         </div>
     </div>
-    <input type="hidden" name="id" class="" value="<?php echo $data['id']; ?>">
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button type="submit" class="layui-btn" lay-submit="" lay-filter="formSubmit">提交</button>
@@ -639,6 +665,8 @@ $ca = strtolower(request()->controller().'/'.request()->action());
 <?php echo editor(['UEditor1', 'UEditor2'], 'ueditor'); ?>
 <?php echo editor(['ckeditor', 'ckeditor2'], 'ckeditor'); ?>
 <script src="/static/admin/js/footer.js"></script>
+
+
                 </div>
             </div>
         </div>
