@@ -1,0 +1,36 @@
+---------------------------------------------------------------
+[ 2018-01-11T11:01:21+08:00 ] 0.0.0.0 POST /admin/content/add.html
+[ info ] www.lianmeng.com/admin/content/add.html [运行时间：0.130121s][吞吐率：7.69req/s] [内存消耗：2,796.23kb] [文件加载：79]
+[ error ] [0]数据表字段不存在:[author][D:\Aliases\lianmeng\thinkphp\library\think\db\Builder.php:109]
+---------------------------------------------------------------
+[ 2018-01-11T11:01:47+08:00 ] 0.0.0.0 POST /admin/content/add.html
+[ info ] www.lianmeng.com/admin/content/add.html [运行时间：0.142502s][吞吐率：7.02req/s] [内存消耗：2,796.52kb] [文件加载：79]
+[ error ] [0]数据表字段不存在:[author][D:\Aliases\lianmeng\thinkphp\library\think\db\Builder.php:109]
+---------------------------------------------------------------
+[ 2018-01-11T11:02:42+08:00 ] 0.0.0.0 POST /admin/content/add.html
+[ info ] www.lianmeng.com/admin/content/add.html [运行时间：0.175898s][吞吐率：5.69req/s] [内存消耗：2,766.59kb] [文件加载：81]
+[ error ] [10501]SQLSTATE[42S02]: Base table or view not found: 1146 Table 'lianmeng.lm_article_content' doesn't exist[D:\Aliases\lianmeng\thinkphp\library\think\db\Connection.php:388]
+---------------------------------------------------------------
+[ 2018-01-11T11:45:36+08:00 ] 0.0.0.0 GET /admin/type/delete/id/56
+[ info ] www.lianmeng.com/admin/type/delete/id/56 [运行时间：0.183119s][吞吐率：5.46req/s] [内存消耗：2,760.27kb] [文件加载：81]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`a1`   INNER JOIN `lm_article_content` `a2` ON `a1`.`id`=`a2`.`article_id`  WHER' at line 1[D:\Aliases\lianmeng\thinkphp\library\think\db\Connection.php:456]
+---------------------------------------------------------------
+[ 2018-01-11T11:58:03+08:00 ] 0.0.0.0 GET /admin/content/article/id/4.html?q=%E9%98%BF%E6%96%AF%E8%BE%BE
+[ info ] www.lianmeng.com/admin/content/article/id/4.html?q=%E9%98%BF%E6%96%AF%E8%BE%BE [运行时间：0.158981s][吞吐率：6.29req/s] [内存消耗：2,874.57kb] [文件加载：86]
+[ error ] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'where clause'[D:\Aliases\lianmeng\thinkphp\library\think\db\Connection.php:388]
+---------------------------------------------------------------
+[ 2018-01-11T12:06:04+08:00 ] 0.0.0.0 GET /admin/content/index.html?q=1
+[ info ] www.lianmeng.com/admin/content/index.html?q=1 [运行时间：0.169479s][吞吐率：5.90req/s] [内存消耗：3,136.68kb] [文件加载：89]
+[ error ] [8]未定义变量: page[D:\Aliases\lianmeng\runtime\temp\dae1f5c10ef1cd19a8d23cfe879b5145.php:454]
+---------------------------------------------------------------
+[ 2018-01-11T14:20:11+08:00 ] 0.0.0.0 POST /admin/doghouse/deleteall.html
+[ info ] www.lianmeng.com/admin/doghouse/deleteall.html [运行时间：0.140918s][吞吐率：7.10req/s] [内存消耗：2,809.20kb] [文件加载：80]
+[ error ] [8]Array to string conversion[D:\Aliases\lianmeng\thinkphp\library\think\db\Builder.php:396]
+---------------------------------------------------------------
+[ 2018-01-11T14:20:26+08:00 ] 0.0.0.0 POST /admin/doghouse/deleteall.html
+[ info ] www.lianmeng.com/admin/doghouse/deleteall.html [运行时间：0.151769s][吞吐率：6.59req/s] [内存消耗：2,810.23kb] [文件加载：80]
+[ error ] [8]Array to string conversion[D:\Aliases\lianmeng\thinkphp\library\think\db\Builder.php:396]
+---------------------------------------------------------------
+[ 2018-01-11T14:22:41+08:00 ] 0.0.0.0 GET /admin/content/index.html
+[ info ] www.lianmeng.com/admin/content/index.html [运行时间：0.085542s][吞吐率：11.69req/s] [内存消耗：2,438.21kb] [文件加载：66]
+[ error ] [0]语法解析错误: syntax error, unexpected '}'[D:\Aliases\lianmeng\app\admin\controller\Content.php:204]

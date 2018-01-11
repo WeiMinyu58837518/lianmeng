@@ -22,7 +22,7 @@ class Type extends Admin
         foreach($type as &$v){
             $level='';
             for($i=0;$i<$v['level'];$i++){
-                $level.='--';
+                $level.='&nbsp;--';
             }
             $v['level']=$level;
         }
@@ -95,6 +95,7 @@ class Type extends Admin
             return ['info'=>30000,'error'=>'此分类有子分类，请勿删除'];
         }
         $ress=Db::name('type')->delete($id);
+//        Db::name('article')->alias('a1')->join('lm_article_content a2','a1.id=a2.article_id')->where('a1.type_id',$id)->delete();
         if($ress){
             return ['info'=>10000];
         }else{

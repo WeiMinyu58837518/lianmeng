@@ -11,6 +11,8 @@
 
 // 为方便系统升级，二次开发中用到的公共函数请写在此文件，禁止修改common.php文件
 // ===== 系统升级时此文件永远不会被覆盖 =====
+
+//自关联
 function getTree($list,$pid=0,$level=0) {
     static $tree = array();
     foreach($list as $row) {
@@ -21,4 +23,15 @@ function getTree($list,$pid=0,$level=0) {
         }
     }
     return $tree;
+}
+//层级
+function findFother($list,$pid){
+    static $fother='';
+    foreach ($list as $k => $v){
+        if($v['id']==$pid){
+            $fother.='->'.$v['name'];
+            findFother($list, $v['pid']);
+        }
+    }
+    return $fother;
 }

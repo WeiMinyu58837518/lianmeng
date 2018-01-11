@@ -31,7 +31,7 @@ class Doghouse extends Admin
             $this->assign('list','');
             return $this->fetch();
         }else{
-            $data=Db::name('doghouse')->order('id','desc')->paginate(10);
+            $data=Db::name('doghouse')->order('id','desc')->paginate(1);
             $page=$data->render();
             $this->assign('data',$data);
             $this->assign('list',$page);
@@ -67,7 +67,7 @@ class Doghouse extends Admin
             $id=Db::name('doghouse')->insertGetId(['title'=>$data['title'],'author'=>$data['author'],'img'=>$data['img'],'ctime'=>date('Y-m-d H:i:s',time()),'ptime'=>date('Y-m-d H:i:s',time())]);
             $res=Db::name('doghouse_content')->insert(['doghouse_id'=>$id,'content'=>$data['content']]);
             if($res){
-                $this->success('添加成功');
+                $this->success('添加成功','index');
             }else{
                 $this->error('添加失败');
             }
@@ -103,10 +103,10 @@ class Doghouse extends Admin
             //验证结束入库
             $res1=Db::name('doghouse')->where('id',$data['idd'])->update(['title'=>$data['title'],'author'=>$data['author'],'img'=>$data['img'],'ptime'=>date('Y-m-d H:i:s',time())]);
             $res2=Db::name('doghouse_content')->where('doghouse_id',$data['idd'])->update(['content'=>$data['content']]);
-            if(!$res1 && !$res2){
-                $this->error('修改失败');
-            }else{
+            if($res1==true || $res2==true){
                 $this->success('修改成功','index');
+            }else{
+                $this->error('修改失败');
             }
         }
     }
@@ -122,11 +122,18 @@ class Doghouse extends Admin
     }
     public function deleteall(){
         $ids=Request::instance()->param();
-        foreach($ids['delete'] as $k=>$v){
-            Db::name('doghouse')->where('id',$v)->delete();
-            Db::name('doghouse_content')->where('doghouse_id',$v)->delete();
+        $res=Db::name('doghouse')->delete($ids['delete']);
+        Db::name('doghouse_content')->delete($ids['delete']);
+//        foreach($ids['delete'] as $k=>$v){
+//            Db::name('doghouse')->where('id',$v)->delete();
+//            Db::name('doghouse_content')->where('doghouse_id',$v)->delete();
+//        }
+        if($res){
+            $this->success('删除成功','index');
+        }else{
+            $this->error('删除失败');
         }
-        $this->success('删除成功','index');
+
     }
     public function search(){
         echo Request::instance()->param('q');
